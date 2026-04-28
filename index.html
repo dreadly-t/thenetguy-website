@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+	<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>the net guy. - industrial safety netting solutions</title>
+	<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+	<script id="tailwind-config">
+		tailwind.config = {
+		"darkMode": "class",
+		"theme": {
+			"extend": {
+			"colors": {
+				"surface-container": "#0f2035",
+				"on-error-container": "#ffdad6",
+				"on-primary-container": "#a38100",
+				"on-tertiary": "#00363d",
+				"on-surface": "#f8f9fa",
+				"outline": "#8e9197",
+				"secondary-fixed": "#d4e3ff",
+				"inverse-on-surface": "#213147",
+				"on-secondary-fixed-variant": "#38485f",
+				"secondary-fixed-dim": "#b7c7e3",
+				"on-tertiary-container": "#42909b",
+				"on-primary-fixed-variant": "#574400",
+				"surface-dim": "#031428",
+				"surface-bright": "#2a3a50",
+				"surface": "#031428",
+				"surface-container-low": "#0b1c31",
+				"on-primary-fixed": "#241a00",
+				"surface-container-highest": "#26364c",
+				"inverse-primary": "#745b00",
+				"tertiary-fixed": "#a3effb",
+				"error-container": "#93000a",
+				"surface-container-high": "#1b2b40",
+				"on-tertiary-fixed": "#001f24",
+				"primary-container": "#261c00",
+				"on-secondary": "#213147",
+				"primary-fixed-dim": "#f1c100",
+				"on-tertiary-fixed-variant": "#004f58",
+				"tertiary": "#87d2df",
+				"secondary": "#cbd5e1",
+				"on-background": "#f8f9fa",
+				"on-secondary-fixed": "#0b1c31",
+				"tertiary-fixed-dim": "#87d2df",
+				"primary": "#f1c100",
+				"on-error": "#690005",
+				"on-surface-variant": "#c4c6cd",
+				"error": "#ffb4ab",
+				"surface-container-lowest": "#000e22",
+				"inverse-surface": "#d4e3ff",
+				"tertiary-container": "#002126",
+				"secondary-container": "#38485f",
+				"background": "#031428",
+				"surface-tint": "#f1c100",
+				"on-primary": "#3d2f00",
+				"surface-variant": "#26364c",
+				"outline-variant": "#44474d",
+				"primary-fixed": "#ffe08a",
+				"on-secondary-container": "#a6b6d1"
+			},
+			"borderRadius": {
+				"DEFAULT": "0.25rem",
+				"lg": "0.25rem",
+				"xl": "0.5rem",
+				"full": "0.75rem"
+			},
+			"fontFamily": {
+				"display": [
+				"Golos Text",
+				"sans-serif"
+				]
+			}
+			}
+		}
+		};
+	</script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+		rel="stylesheet" />
+
+	<style>
+		html {
+			scroll-padding-top: 6rem;
+		}
+		.material-symbols-outlined {
+			font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+		}
+		body {
+			background-color: #031428;
+			color: #f8f9fa;
+			font-family: 'Inter', sans-serif;
+		}
+		input[type=range] {
+			-webkit-appearance: none;
+			appearance: none;
+			background: transparent;
+			height: 1.75rem;
+		}
+		input[type=range]::-webkit-slider-runnable-track {
+			background: #26364c;
+			height: 8px;
+			border-radius: 4px;
+		}
+		input[type=range]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			height: 24px;
+			width: 24px;
+			border-radius: 50%;
+			background: #f1c100;
+			border: 2px solid #0b1c31;
+			cursor: pointer;
+			margin-top: -8px;
+		}
+		input[type=range]::-moz-range-track {
+			background: #26364c;
+			height: 8px;
+			border-radius: 4px;
+		}
+		input[type=range]::-moz-range-thumb {
+			height: 24px;
+			width: 24px;
+			border-radius: 50%;
+			background: #f1c100;
+			border: 2px solid #0b1c31;
+			cursor: pointer;
+		}
+		.hero-slide {
+			opacity: 0;
+			transition: opacity 3.0s ease;
+		}
+		.hero-slide.is-active {
+			opacity: 1;
+		}
+		.hero-dot {
+			width: 0.75rem;
+			height: 0.75rem;
+			border-radius: 9999px;
+			border: 1px solid rgba(248, 249, 250, 0.75);
+			background: rgba(248, 249, 250, 0.35);
+			transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+		}
+		.hero-dot.is-active {
+			transform: scale(1.15);
+			background: #ffffff;
+			border-color: #ffffff;
+		}
+		@media (prefers-reduced-motion: reduce) {
+			.hero-slide,
+			.hero-dot {
+				transition: none;
+			}
+		}
+	</style>
+	<link
+		rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@300;400;500;600;700;800;900&display=swap" />
+	</head>
+	<body class="selection:bg-primary selection:text-on-primary" id="top">
+	<!-- TopNavBar -->
+	<nav
+		class="fixed top-0 w-full z-50 bg-[#031428]/80 backdrop-blur-md border-b border-outline-variant/10">
+		<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+		<a class="text-[#f1c100] lowercase font-['Golos_Text'] tracking-normal font-bold" href="#top">
+			the net guy.
+		</a>
+		<!-- Mobile Nav -->
+		<div class="flex md:hidden items-center space-x-6">
+			<a
+			class="uppercase tracking-widest hover:text-primary transition-colors text-xs font-normal"
+			href="#estimator">
+			pricing
+			</a>
+			<a
+			class="uppercase tracking-widest hover:text-primary transition-colors text-xs font-normal"
+			href="#contact">
+			contact
+			</a>
+		</div>
+
+		<!-- Desktop Nav -->
+		<div class="hidden md:flex items-center space-x-12">
+			<a
+			class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+			href="#mission">
+			mission
+			</a>
+			<a
+			class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+			href="#services">
+			process
+			</a>
+			<a
+			class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+			href="#estimator">
+			pricing
+			</a>
+			<a
+			class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
+			href="#contact">
+			contact
+			</a>
+		</div>
+		</div>
+	</nav>
+	<!-- Hero Section -->
+	<header class="relative min-h-screen pt-20 overflow-hidden bg-surface-dim">
+		<div class="absolute inset-0">
+		<div class="absolute inset-0">
+			<img
+			src="./Assets/residential1.jpg"
+			class="hero-slide is-active absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" />
+			<img
+			src="./Assets/residential2.jpg"
+			class="hero-slide absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" />
+			<img
+			src="./Assets/residential3.jpg"
+			class="hero-slide absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" />
+			<img
+			src="./Assets/residential4.jpg"
+			class="hero-slide absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" />
+			<img
+			src="./Assets/residential5.jpg"
+			class="hero-slide absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" />
+			<!-- <img
+			src="./Assets/residential6.jpg"
+			class="hero-slide absolute inset-0 w-full h-full object-cover"
+			alt="residential safety netting installation" /> -->
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-r from-surface-dim via-surface-dim/80 to-surface-dim/30"></div>
+		<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-surface-dim/10"></div>
+		</div>
+
+		<div class="relative z-10 min-h-[calc(100vh-5rem)] flex items-end">
+		<div class="max-w-7xl mx-auto px-6 w-full pb-8 md:pb-12 lg:pb-16">
+			<div class="max-w-3xl">
+			<h1
+				class="text-[min(8rem,12vw)] whitespace-nowrap text-primary leading-none lowercase mb-6 md:mb-8 font-['Golos_Text'] font-bold tracking-normal">
+				the net guy.
+			</h1>
+				<p
+					class="text-lg md:text-2xl font-body text-on-surface leading-relaxed mb-8 md:mb-12">
+					<span class="block max-w-[70vw]">Keep your site moving and your crew protected.</span>
+					<span class="block">No delays. No headaches.</span>
+				</p>
+			<div class="flex flex-wrap gap-4">
+				<a
+				class="bg-primary text-on-primary px-8 py-4 font-headline font-bold uppercase text-lg shadow-2xl transition-transform hover:-translate-y-1"
+				href="#contact">
+				get a quote
+				</a>
+			</div>
+			</div>
+		</div>
+		</div>
+		<!-- TODO: Decide whether the hero needs manual controls on mobile and for reduced-motion users. -->
+		<div
+		class="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 md:flex flex-col items-center gap-4"
+		aria-label="Hero slideshow navigation">
+		<div class="flex flex-col items-center gap-3">
+			<button class="hero-dot is-active" type="button" aria-label="Show residential image 1"></button>
+			<button class="hero-dot" type="button" aria-label="Show residential image 2"></button>
+			<button class="hero-dot" type="button" aria-label="Show residential image 3"></button>
+			<button class="hero-dot" type="button" aria-label="Show residential image 4"></button>
+			<button class="hero-dot" type="button" aria-label="Show residential image 5"></button>
+			<!-- <button class="hero-dot" type="button" aria-label="Show residential image 6"></button> -->
+		</div>
+		</div>
+	</header>
+	<!-- Mission Section -->
+	<section class="py-24 bg-surface-container-low" id="mission">
+		<div class="max-w-7xl mx-auto px-6">
+		<div class="grid lg:grid-cols-2 gap-16 items-center">
+			<div class="relative">
+			<!-- TODO: Make text bigger 
+			 drop done right to the next line
+			 Dim images a tad
+			 -->
+			<h2
+				class="text-3xl md:text-5xl font-headline font-extrabold text-on-surface lowercase leading-tight mb-8">
+				our mission:
+				<br />
+				<span class="text-primary italic">fall protection</span>
+				done properly.
+			</h2>
+			<p class="text-lg text-secondary leading-relaxed mb-6 lg:max-w-[35rem]">
+				Most builders don’t think about safety nets until they have to – and when they do, it
+				needs to be fast, compliant, and done right the first time.
+			</p>
+
+			<p class="text-lg text-secondary leading-relaxed mb-6 lg:max-w-[35rem]">
+				That’s exactly what we deliver. Expert, reliable safety net installations that protect
+				workers at heights and keep your project moving.
+			</p>
+			<div class="flex items-center gap-4 py-4">
+				<div class="w-12 h-12 bg-surface-container-highest flex items-center justify-center">
+				<span class="material-symbols-outlined text-primary">security</span>
+				</div>
+				<div>
+				<p class="text-sm font-bold text-on-surface uppercase tracking-wider">
+					Zero Compromise
+				</p>
+				<p class="text-xs text-outline">
+					No shortcuts. No missed steps. Every install done right.
+				</p>
+				</div>
+			</div>
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+			<!--
+			Save for later
+			<div
+				class="group aspect-square overflow-hidden rounded-lg border border-outline-variant/10 shadow-2xl transition-transform duration-500 ease-out md:hover:scale-105 md:hover:z-10">-->
+			<div
+				class="group aspect-square overflow-hidden rounded-lg border border-outline-variant/10 shadow-2xl">
+				<img
+					alt="residential netting installation"
+					class="w-full h-full object-cover"
+					src="./Assets/residential3.jpg" />
+			</div>
+			<div
+				class="group aspect-square mt-12 overflow-hidden rounded-lg border border-outline-variant/10 shadow-2xl">
+				<img
+					alt="commercial safety netting"
+					class="w-full h-full object-cover"
+					src="./Assets/commercial1.jpg" />
+			</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- Core Values -->
+	<section class="py-24 bg-surface" id="services">
+		<div class="max-w-7xl mx-auto px-6">
+		<div class="mb-16">
+			<h2 class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">
+			how we work
+			</h2>
+			<div class="w-24 h-1 bg-primary"></div>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+			<div
+			class="md:col-span-3 bg-surface-container-high p-10 border-l-4 border-primary transition-all hover:bg-surface-bright group">
+			<span
+				class="material-symbols-outlined text-4xl text-primary mb-6 transition-transform group-hover:scale-110">
+				shield
+			</span>
+			<h3 class="text-2xl font-headline font-bold text-on-surface lowercase mb-4">
+				safety first
+			</h3>
+			<p class="text-secondary leading-relaxed">
+				If it’s not safe, it doesn’t get installed. No shortcuts. No exceptions.
+			</p>
+			</div>
+			<div
+			class="md:col-span-3 bg-surface-container-high p-10 border-l-4 border-tertiary transition-all hover:bg-surface-bright group">
+			<span
+				class="material-symbols-outlined text-4xl text-tertiary mb-6 transition-transform group-hover:scale-110">
+				verified
+			</span>
+			<h3 class="text-2xl font-headline font-bold text-on-surface lowercase mb-4">
+				reliability
+			</h3>
+			<p class="text-secondary leading-relaxed">
+				We communicate clearly and show up when we say we will.
+				<br />
+				Simple as that.
+			</p>
+			</div>
+			<div
+			class="md:col-span-2 bg-surface-container-low p-8 transition-all hover:bg-surface-container-high group">
+			<span class="material-symbols-outlined text-2xl text-secondary mb-4">location_on</span>
+			<h3 class="text-xl font-headline font-bold text-on-surface lowercase mb-2">
+				regional focus
+			</h3>
+			<p class="text-sm text-secondary" title="to infinity and beyond">
+				Based in Manawatū, covering Wellington and beyond. If you need us elsewhere, we’ll
+				make it happen.
+			</p>
+			</div>
+			<div
+			class="md:col-span-2 bg-surface-container-low p-8 transition-all hover:bg-surface-container-high group">
+			<span class="material-symbols-outlined text-2xl text-secondary mb-4">
+				assignment_turned_in
+			</span>
+			<h3 class="text-xl font-headline font-bold text-on-surface lowercase mb-2">
+				accountability
+			</h3>
+			<p class="text-sm text-secondary">
+				The same certified rigger on every job. You know who’s turning up, and the work gets
+				done right.
+			</p>
+			</div>
+			<div
+			class="md:col-span-2 bg-surface-container-low p-8 transition-all hover:bg-surface-container-high group">
+			<span class="material-symbols-outlined text-2xl text-secondary mb-4">trending_up</span>
+			<h3 class="text-xl font-headline font-bold text-on-surface lowercase mb-2">
+				done right
+			</h3>
+			<p class="text-sm text-secondary">
+				Every install is checked and documented properly. Nothing gets signed off unless it’s
+				right.
+			</p>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- Regional Focus & Compliance -->
+	<section class="py-24 bg-surface-container-lowest" id="about">
+		<div class="max-w-7xl mx-auto px-6">
+		<div class="grid lg:grid-cols-12 gap-12">
+			<!-- Regional Cards -->
+			<div class="lg:col-span-7 grid md:grid-cols-2 gap-6">
+			<div
+				class="bg-surface-container p-8 relative overflow-hidden group border border-outline-variant/5">
+				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
+				<span class="material-symbols-outlined text-8xl text-primary">
+					wind_power
+				</span>
+				</div>
+				<h4 class="text-primary font-headline font-black text-3xl mb-4 lowercase">
+				manawatū
+				</h4>
+				<p class="text-secondary mb-6">
+				Based in Manawatū. Fast to respond and easy to get on site.
+				</p>
+				<div
+				class="flex items-center text-xs font-bold tracking-widest text-on-surface uppercase">
+				<span class="w-2 h-2 rounded-full bg-primary mr-2"></span>
+				Local & available
+				</div>
+			</div>
+			<div
+				class="bg-surface-container p-8 relative overflow-hidden group border border-outline-variant/5">
+				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
+				<span class="material-symbols-outlined text-8xl text-tertiary">apartment</span>
+				</div>
+				<h4 class="text-tertiary font-headline font-black text-3xl mb-4 lowercase">
+				wellington
+				</h4>
+				<p class="text-secondary mb-6">
+				Wellington coverage built into the schedule, with reliable delivery across both regions.
+				</p>
+				<div
+				class="flex items-center text-xs font-bold tracking-widest text-on-surface uppercase">
+				<span class="w-2 h-2 rounded-full bg-tertiary mr-2"></span>
+				Scheduled coverage
+				</div>
+			</div>
+			</div>
+			<!-- Compliance Box - Restyled -->
+			<div
+			class="lg:col-span-5 bg-surface-container-low border border-primary/20 p-12 flex flex-col justify-center"
+			id="compliance">
+			<h3 class="text-3xl font-headline font-black lowercase mb-6 text-on-surface">
+				safety compliance
+			</h3>
+			<p class="text-secondary text-lg font-medium leading-relaxed mb-8">
+				Installed to 
+				<span class="text-primary underline decoration-2">BS EN 1263 international standards.</span>
+				This goes beyond WorkSafe baseline requirements, with nets tested, tensioned, and installed for proper energy absorption, then documented for clean sign-off.
+			</p>
+			<!-- TODO: Add a new page that goes into detail about BS EN 1263 -->
+			<div class="flex gap-8 mb-10">
+				<div class="flex flex-col border-l-2 border-primary pl-4">
+				<span class="text-3xl font-black text-primary">100%</span>
+				<span class="text-[10px] uppercase font-bold tracking-widest text-outline">
+					Certified
+				</span>
+				</div>
+				<div class="flex flex-col border-l-2 border-primary pl-4">
+				<span class="text-3xl font-black text-primary">BS EN</span>
+				<span class="text-[10px] uppercase font-bold tracking-widest text-outline">
+					1263-1:2014
+				</span>
+				</div>
+			</div>
+			<a
+				class="bg-primary text-on-primary font-headline font-bold lowercase text-center py-4 transition-all hover:brightness-110"
+				href="#contact">
+				check availability
+			</a>
+			<!-- TODO: take button out? -->
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- Pricing Estimator Section -->
+	<section class="py-24 bg-surface" id="estimator">
+		<div class="max-w-7xl mx-auto px-6">
+		<div class="mb-4">
+			<h2 class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">
+			pricing estimator
+			</h2>
+			<div class="w-24 h-1 bg-primary"></div>
+			<p class="mt-6 text-secondary text-lg max-w-2xl">
+			Get a quick estimate here for your safety netting project.</p>
+			<p class="text-secondary text-lg">
+			Adjust the sliders below to match your job requirements.</p>
+		</div>
+
+		<div
+			class="grid lg:grid-cols-2 gap-10 bg-surface-container-low border border-outline-variant/10 p-4 md:p-12">
+			<!-- Calculator Inputs -->
+			<div class="space-y-8">
+			<div class="space-y-4">
+				<div class="flex justify-between items-center gap-4">
+				<label class="block text-xs font-bold uppercase tracking-widest text-outline">
+					Total Area (m²)
+				</label>
+				<span
+					class="text-primary font-bold text-xl tabular-nums text-right min-w-[7ch]"
+					id="areaDisplay">
+					100 m²
+				</span>
+				</div>
+
+				<input
+				class="block w-full cursor-pointer accent-primary"
+				id="inputArea"
+				max="500"
+				min="50"
+				type="range"
+				value="100" />
+
+				<div class="flex justify-between text-[10px] text-outline uppercase font-bold">
+				<span>50 m²</span>
+				<span>500 m²</span>
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				<div class="flex justify-between items-center gap-4">
+				<label class="text-xs font-bold uppercase tracking-widest text-outline">
+					Estimated Project Duration
+				</label>
+				<span
+					class="text-primary font-bold tabular-nums text-right min-w-[8ch]"
+					id="durationDisplay">
+					3 Weeks
+				</span>
+				</div>
+
+				<input
+				class="block w-full cursor-pointer accent-primary"
+				id="inputWeeks"
+				max="24"
+				min="1"
+				type="range"
+				value="3" />
+
+				<div class="flex justify-between text-[10px] text-outline uppercase font-bold">
+				<span>1 Week</span>
+				<span>24 Weeks</span>
+				</div>
+			</div>
+
+			<div class="bg-surface-dim p-4 border-l-4 border-tertiary">
+				<p class="font-bold text-tertiary">
+					How pricing works:
+				</p>
+				<p class="text-xs text-secondary leading-relaxed">
+					Simple pricing based on job size and hire duration
+				</p>
+				<ul class="text-xs text-secondary leading-relaxed">
+					<li><br></li>
+					<li>Installation: $5.00m²</li>
+					<li>Weekly hire: 10% of the installation </li>
+				</ul>
+			</div>
+			</div>
+
+			<!-- Results Display -->
+			<div
+			class="bg-surface-container-highest p-6 md:p-10 border border-outline-variant/20 flex flex-col justify-between min-w-0">
+			<div class="space-y-6">
+				<div
+				class="flex justify-between items-center border-b border-outline-variant/10 pb-4 gap-4 min-w-0">
+				<span class="text-secondary min-w-0">Installation</span>
+				<span
+					class="text-on-surface font-bold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
+					id="resInstall">
+					$500.00
+				</span>
+				</div>
+
+				<div
+				class="flex justify-between items-center border-b border-outline-variant/10 pb-4 gap-4 min-w-0">
+				<span class="text-secondary min-w-0">Weekly hire total</span>
+				<span
+					class="text-on-surface font-bold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
+					id="resHire">
+					$150.00
+				</span>
+				</div>
+
+				<div
+				class="flex justify-between items-center border-b border-outline-variant/10 pb-4 gap-4 min-w-0">
+				<span class="text-secondary uppercase min-w-0">gst (15%)</span>
+				<span
+					class="text-on-surface font-bold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
+					id="resGST">
+					$97.50
+				</span>
+				</div>
+			</div>
+
+			<div class="mt-10">
+				<div class="mb-8 min-w-0">
+				<p class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1">
+					Estimated Total
+				</p>
+				<h3
+					class="text-4xl md:text-6xl font-headline font-black text-primary tabular-nums text-left sm:text-right min-w-[8ch] sm:min-w-[10ch]"
+					id="resGrandTotal">
+					$747.50
+				</h3>
+				</div>
+
+				<a
+				class="block w-full text-center bg-primary text-on-primary font-headline font-black text-lg py-4 transition-all hover:brightness-110"
+				href="#contact">
+				get a quote
+				</a>
+
+				<p class="text-[10px] text-outline text-center mt-4 lowercase tracking-tighter">
+				*Estimate only. Final quote confirmed after reviewing plans or site details.
+				</p>
+			</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<script>
+		const inputArea = document.getElementById('inputArea');
+		const areaDisplay = document.getElementById('areaDisplay');
+		const inputWeeks = document.getElementById('inputWeeks');
+		const durationDisplay = document.getElementById('durationDisplay');
+		const resInstall = document.getElementById('resInstall');
+		const resHire = document.getElementById('resHire');
+		const resGST = document.getElementById('resGST');
+		const resGrandTotal = document.getElementById('resGrandTotal');
+
+		function calculate() {
+			const area = parseFloat(inputArea.value) || 0;
+			const weeks = parseInt(inputWeeks.value);
+			areaDisplay.innerText = `${area} m²`;
+			durationDisplay.innerText = `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+			const baseInstall = area * 5.00;
+			const weeklyHire = baseInstall * 0.10;
+			const totalHire = weeklyHire * weeks;
+			const totalPreTax = baseInstall + totalHire;
+			const gst = totalPreTax * 0.15;
+			const grandTotal = totalPreTax + gst;
+			const formatter = new Intl.NumberFormat('en-NZ', {
+				style: 'currency',
+				currency: 'NZD',
+			});
+			resInstall.innerText = formatter.format(baseInstall);
+			resHire.innerText = formatter.format(totalHire);
+			resGST.innerText = formatter.format(gst);
+			resGrandTotal.innerText = formatter.format(grandTotal);
+		}
+		inputArea.addEventListener('input', calculate);
+		inputWeeks.addEventListener('input', calculate);
+		calculate();
+	</script>
+	<!-- Quote/Contact Section -->
+	<section class="bg-surface-container-lowest border border-tertiary/10" id="contact">
+		<div class="py-24 max-w-7xl mx-auto px-6">
+		<div class="grid lg:grid-cols-2 gap-20">
+			<div>
+			<h2
+				class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">
+				get a quote
+			</h2>
+			<div class="w-24 h-1 bg-primary"></div>
+
+			<!--  -->
+			<p class="mt-6 text-secondary text-lg">
+				Got a job coming up? Send through the details and we'll sort a quote for you.
+			</p>
+			<p class="mt-6 text-secondary text-lg mb-6">
+				Prefer to talk? Call or email 
+				<span class="text-primary font-bold">Tarn</span> directly.
+			</p>
+			<div class="space-y-8">
+					<div class="flex items-center gap-6">
+					<div
+						class="w-14 h-14 bg-surface-container-low flex items-center justify-center text-primary">
+						<span class="material-symbols-outlined text-3xl">call</span>
+					</div>
+					<div class="flex items-center gap-3">
+						<div>
+						<p class="text-xs uppercase tracking-widest text-outline">Call Direct</p>
+						<a
+						class="text-xl font-bold text-on-surface hover:text-primary transition-colors md:hidden"
+						href="tel:+6421344568">
+						021-344-568
+						</a>
+						<p class="hidden text-xl font-bold text-on-surface md:block">
+						021-344-568
+						</p>
+						</div>
+						<button
+						aria-label="Copy phone number"
+						class="copy-trigger flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-outline transition-colors hover:text-primary"
+						data-copy-text="021344568"
+					data-copy-default="content_copy"
+					type="button">
+					<span class="material-symbols-outlined text-xl">content_copy</span>
+					</button>
+				</div>
+				</div>
+					<div class="flex items-center gap-6">
+					<div
+						class="w-14 h-14 bg-surface-container-low flex items-center justify-center text-primary">
+						<span class="material-symbols-outlined text-3xl">mail</span>
+					</div>
+					<div class="flex items-center gap-3">
+						<div>
+						<p class="text-xs uppercase tracking-widest text-outline">Email</p>
+						<p class="text-xl font-bold text-on-surface">
+						tarn@thenetguy.co.nz
+						</p>
+						</div>
+						<button
+						aria-label="Copy email address"
+						class="copy-trigger flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-outline transition-colors hover:text-primary"
+					data-copy-text="tarn@thenetguy.co.nz"
+					data-copy-default="content_copy"
+					type="button">
+					<span class="material-symbols-outlined text-xl">content_copy</span>
+					</button>
+				</div>
+				</div>
+			</div>
+			</div>
+			<div
+			class="bg-surface-container p-8 md:p-12 border border-outline-variant/10 shadow-inner">
+			<form action="#" class="space-y-6" method="POST">
+				<div class="grid md:grid-cols-2 gap-6">
+				<div class="space-y-2">
+					<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Company Name
+					</label>
+					<input
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
+					name="company"
+					placeholder="eg. Horizon Construction"
+					required=""
+					type="text" />
+				</div>
+				<div class="space-y-2">
+					<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Project Location
+					</label>
+					<input
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
+					name="location"
+					placeholder="City or Region"
+					required=""
+					type="text" />
+				</div>
+				</div>
+				<div class="space-y-2">
+				<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Message / Requirements
+				</label>
+				<textarea
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm resize-none"
+					name="message"
+					placeholder="Details about heights, site type, and timeline..."
+					required=""
+					rows="4"></textarea>
+				</div>
+				<button
+					class="w-full bg-primary text-on-primary font-headline font-black text-xl py-5 transition-all hover:brightness-110"
+					type="submit">
+					get your quote
+				</button>
+			</form>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer class="bg-surface-dim w-full pt-16 pb-8 border-t border-[#44474d]/15">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto">
+		<div>
+			<a
+			class="text-xl font-bold text-[#f1c100] lowercase font-['Inter'] mb-6 inline-block"
+			href="#">
+			the net guy.
+			</a>
+				<p class="text-secondary/70 font-['Inter'] text-sm leading-relaxed max-w-full md:max-w-xs">
+			Safety net installation for residential and commercial builds. Based in Manawatū, working across Wellington and beyond.
+			</p>
+		</div>
+		<div class="grid grid-cols-2 gap-8">
+			<div class="space-y-3">
+			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
+				Quick Links
+			</h5>
+			<a
+				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
+				href="#">
+				privacy policy
+			</a>
+			<a
+				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
+				href="#">
+				terms of service
+			</a>
+			<a
+				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
+				href="#">
+				safety certification
+			</a>
+			</div>
+			<div class="space-y-3">
+			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
+				Service Hubs
+			</h5>
+			<a
+				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
+				href="#">
+				manawatū
+			</a>
+			<a
+				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
+				href="#">
+				wellington
+			</a>
+			</div>
+		</div>
+		<div class="flex flex-col justify-between">
+			<div class="bg-surface-container-lowest p-6 border border-outline-variant/10">
+			<p class="text-[#f1c100] font-bold text-xs uppercase tracking-widest mb-2">
+				compliant installations
+			</p>
+			<p class="text-on-surface-variant text-xs">
+				WorkSafe compliant with FASET-certified installers. BS EN 1263-1 & 1263-2
+			</p>
+			</div>
+		</div>
+		</div>
+		<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-[#44474d]/10">
+		<p class="text-secondary/50 font-['Inter'] text-sm text-center md:text-left">
+			© 2026 the net guy. all rights reserved.
+		</p>
+		</div>
+	</footer>
+	<script>
+		(() => {
+		const slides = Array.from(document.querySelectorAll('.hero-slide'));
+		const dots = Array.from(document.querySelectorAll('.hero-dot'));
+		if (!slides.length || slides.length !== dots.length) return;
+
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let currentIndex = 0;
+		let intervalId = null;
+
+		const showSlide = (index) => {
+			slides[currentIndex].classList.remove('is-active');
+			dots[currentIndex].classList.remove('is-active');
+			currentIndex = index;
+			slides[currentIndex].classList.add('is-active');
+			dots[currentIndex].classList.add('is-active');
+		};
+
+		const startAutoplay = () => {
+			if (reducedMotion) return;
+			intervalId = window.setInterval(() => {
+			showSlide((currentIndex + 1) % slides.length);
+			}, 10000);
+		};
+
+		const resetAutoplay = () => {
+			if (intervalId) window.clearInterval(intervalId);
+			startAutoplay();
+		};
+
+		dots.forEach((dot, index) => {
+			dot.addEventListener('click', () => {
+			if (index === currentIndex) return;
+			showSlide(index);
+			resetAutoplay();
+			});
+		});
+
+		startAutoplay();
+		})();
+
+		(() => {
+		const headerOffset = 96;
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
+
+		const scrollToHash = (hash, updateHistory = true) => {
+			if (!hash || hash === '#') {
+			window.scrollTo({
+				top: 0,
+				behavior: prefersReducedMotion ? 'auto' : 'smooth'
+			});
+			if (updateHistory) history.pushState(null, '', '#');
+			return;
+			}
+
+			const target = document.querySelector(hash);
+			if (!target) return;
+
+			const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+			window.scrollTo({
+			top: Math.max(targetTop, 0),
+			behavior: prefersReducedMotion ? 'auto' : 'smooth'
+			});
+
+			if (updateHistory) history.pushState(null, '', hash);
+		};
+
+		anchorLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
+			const { hash } = link;
+			if (!hash) return;
+
+			const target = hash === '#' ? document.body : document.querySelector(hash);
+			if (!target) return;
+
+			event.preventDefault();
+			scrollToHash(hash);
+			});
+		});
+
+		if (window.location.hash) {
+			window.setTimeout(() => {
+			scrollToHash(window.location.hash, false);
+			}, 0);
+		}
+		})();
+
+		(() => {
+		const copyButtons = Array.from(document.querySelectorAll('.copy-trigger'));
+		if (!copyButtons.length) return;
+
+		const fallbackCopy = (text) => {
+			const tempInput = document.createElement('textarea');
+			tempInput.value = text;
+			tempInput.setAttribute('readonly', '');
+			tempInput.style.position = 'absolute';
+			tempInput.style.left = '-9999px';
+			document.body.appendChild(tempInput);
+			tempInput.select();
+			document.execCommand('copy');
+			tempInput.remove();
+		};
+
+		copyButtons.forEach((button) => {
+			const icon = button.querySelector('.material-symbols-outlined');
+			const defaultIcon = button.dataset.copyDefault || 'content_copy';
+
+			button.addEventListener('click', async () => {
+			const text = button.dataset.copyText;
+			if (!text) return;
+
+			try {
+				if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(text);
+				} else {
+				fallbackCopy(text);
+				}
+				if (icon) icon.textContent = 'check';
+				window.setTimeout(() => {
+				if (icon) icon.textContent = defaultIcon;
+				}, 1400);
+			} catch (_error) {
+				if (icon) icon.textContent = 'error';
+				window.setTimeout(() => {
+				if (icon) icon.textContent = defaultIcon;
+				}, 1400);
+			}
+			});
+		});
+		})();
+	</script>
+	</body>
+</html>
