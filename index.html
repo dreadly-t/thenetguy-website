@@ -145,10 +145,39 @@
 			background: #ffffff;
 			border-color: #ffffff;
 		}
+		.regions-fade-stage {
+			background:
+				linear-gradient(to bottom, rgba(3, 20, 40, 0.96), rgba(3, 20, 40, 0.52) 34%, rgba(0, 14, 34, 0.92) 78%, #000e22 100%),
+				linear-gradient(to right, rgba(0, 14, 34, 0.96), rgba(0, 14, 34, 0.48) 50%, rgba(0, 14, 34, 0.82)),
+				url("/assets/images/residential3.jpg") center / cover no-repeat;
+			background-position: center center;
+			min-height: 108vh;
+			position: relative;
+		}
+		.regions-fade-overlay {
+			position: absolute;
+			inset: 0;
+			z-index: 15;
+			background: #000e22;
+			opacity: 0;
+			pointer-events: none;
+		}
+		.regions-fade-content {
+			position: relative;
+			z-index: 20;
+		}
+		@media (min-width: 768px) {
+			.regions-fade-stage {
+				background-attachment: fixed;
+			}
+		}
 		@media (prefers-reduced-motion: reduce) {
 			.hero-slide,
 			.hero-dot {
 				transition: none;
+			}
+			.regions-fade-stage {
+				background-attachment: scroll;
 			}
 		}
 	</style>
@@ -286,12 +315,17 @@
 			</h2>
 			-->
 			<h2
-				class="text-3xl md:text-5xl font-headline font-extrabold text-on-surface lowercase leading-tight mb-8">
-				our mission:
-				<br />
-				<span class="text-primary italic">fall protection</span>
+				class="text-3xl md:text-5xl font-headline font-extrabold lowercase text-primary leading-tight mb-3">
+				our mission
+
+			</h2>
+			<div class="w-24 h-1 bg-primary mb-8"></div>
+
+			<h2
+				class="text-3xl md:text-5xl font-headline font-extrabold text-centere lowercase leading-tight mb-8">
+				<span class="text-on-surface">fall protection</span>
 				<br class="hidden lg:block" />
-				done properly.
+				<span class="text-on-surface italic">done properly.</span>
 			</h2>
 			<p class="text-lg text-secondary leading-relaxed mb-6 lg:max-w-[35rem]">
 				Most builders don’t think about safety nets until they have to – and when they do, it
@@ -414,12 +448,27 @@
 		</div>
 	</section>
 	<!-- Regional Focus -->
-	<section class="py-24 bg-surface-container-lowest" id="about">
-		<div class="max-w-7xl mx-auto px-6">
+	<section class="bg-surface-container-lowest" id="about">
+		<!-- Tune fade timing/intensity here: start and end are scroll position ratios, max opacity is 0-1. -->
+		<div
+			class="regions-fade-stage"
+			data-region-fade-stage
+			data-fade-start="0.7"
+			data-fade-end="-0.15"
+			data-fade-max-opacity="0.95">
+		<div class="regions-fade-overlay" data-region-fade-overlay aria-hidden="true"></div>
+		<div class="regions-fade-content max-w-7xl mx-auto px-6 pt-72 md:pt-[30rem] pb-64">
+		<div class="mb-16">
+			<h2 class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">
+			where we work
+			</h2>
+			<div class="w-24 h-1 bg-primary"></div>
+		</div>
 
 		<div class="grid md:grid-cols-3 gap-6">
-			<div
-				class="bg-surface-container p-8 relative overflow-hidden group border border-outline-variant/5">
+			<a
+				class="bg-surface-container p-8 relative overflow-hidden group border border-transparent md:hover:border-primary/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+				href="#contact">
 				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
 				<span class="material-symbols-outlined text-8xl text-primary">
 					wind_power
@@ -432,13 +481,14 @@
 				Based in Manawatū. Fast to respond and easy to get on site.
 				</p>
 				<div
-				class="flex items-center text-xs font-bold tracking-widest text-on-surface uppercase">
+				class="flex items-center text-xs font-bold tracking-widest text-on-surface uppercase md:mb-20">
 				<span class="w-2 h-2 rounded-full bg-primary mr-2"></span>
 				Local & available
 				</div>
-			</div>
-			<div
-				class="bg-surface-container p-8 relative overflow-hidden group border border-outline-variant/5">
+			</a>
+			<a
+				class="bg-surface-container p-8 relative overflow-hidden group border border-transparent md:hover:border-primary/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+				href="#contact">
 				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
 				<span class="material-symbols-outlined text-8xl text-tertiary">apartment</span>
 				</div>
@@ -446,44 +496,46 @@
 				wellington
 				</h4>
 				<p class="text-secondary mb-6">
-				Wellington coverage built into the schedule, with reliable delivery across both regions.
+				Wellington coverage built into the schedule, with reliable delivery.
 				</p>
 				<div
 				class="flex items-center text-xs font-bold tracking-widest text-on-surface uppercase">
 				<span class="w-2 h-2 rounded-full bg-tertiary mr-2"></span>
 				Scheduled coverage
 				</div>
-			</div>
-			<div
-				class="bg-surface-container-low border border-primary/20 p-8 relative overflow-hidden flex flex-col justify-between">
+			</a>
+			<a
+				class="bg-surface-container-low p-8 relative overflow-hidden flex flex-col justify-between border border-transparent md:hover:border-primary/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+				href="#contact">
 				<div>
 				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
 					<span class="material-symbols-outlined text-8xl text-primary">map</span>
 				</div>
 				<h4
-					class="font-headline font-black text-3xl lowercase"
-					style="color: #1a5998b7;">
-					other areas
+					class="font-headline font-black text-3xl lowercase mb-4"
+					style="color: #ffffff;">
+					north island
 				</h4>
 				<p class="text-secondary mb-8">
 					Need safety netting outside Manawatū or Wellington? Send the location and timing through and we’ll confirm whether it fits the schedule.
 				</p>
-				<ul class="space-y-3 mb-8">
-					<li class="flex gap-3 text-sm font-bold tracking-widest text-on-surface uppercase">
+				<!-- <ul class="space-y-3 mb-8">
+					<li class="flex gap-3 text-xs font-bold tracking-widest text-on-surface uppercase">
 					<span class="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0"></span>
 					<span>send location + timing</span>
 					</li>
-					<li class="flex gap-3 text-sm font-bold tracking-widest text-on-surface uppercase">
+					<li class="flex gap-3 text-xs font-bold tracking-widest text-on-surface uppercase">
 					<span class="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0"></span>
 					<span>fast yes/no response</span>
 					</li>
-					<li class="flex gap-3 text-sm font-bold tracking-widest text-on-surface uppercase">
+					<li class="flex gap-3 text-xs font-bold tracking-widest text-on-surface uppercase">
 					<span class="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0"></span>
 					<span>travel cost confirmed upfront</span>
 					</li>
-				</ul>
+				</ul> -->
 				</div>
-			</div>
+			</a>
+		</div>
 		</div>
 		</div>
 	</section>
@@ -892,6 +944,42 @@
 		});
 
 		startAutoplay();
+		})();
+
+		(() => {
+		const fadeStage = document.querySelector('[data-region-fade-stage]');
+		const fadeOverlay = document.querySelector('[data-region-fade-overlay]');
+		if (!fadeStage || !fadeOverlay) return;
+
+		let ticking = false;
+
+		const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+		const numberFromData = (name, fallback) => {
+			const value = Number.parseFloat(fadeStage.dataset[name]);
+			return Number.isFinite(value) ? value : fallback;
+		};
+
+		const updateFade = () => {
+			const rect = fadeStage.getBoundingClientRect();
+			const fadeStart = window.innerHeight * numberFromData('fadeStart', 0.7);
+			const fadeEnd = rect.height * numberFromData('fadeEnd', -0.15);
+			const fadeMaxOpacity = clamp(numberFromData('fadeMaxOpacity', 0.95), 0, 1);
+			const distance = fadeStart - fadeEnd;
+			const progress = distance > 0 ? clamp((fadeStart - rect.top) / distance, 0, 1) : 0;
+
+			fadeOverlay.style.opacity = (progress * fadeMaxOpacity).toFixed(3);
+			ticking = false;
+		};
+
+		const requestUpdate = () => {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(updateFade);
+		};
+
+		window.addEventListener('scroll', requestUpdate, { passive: true });
+		window.addEventListener('resize', requestUpdate);
+		requestUpdate();
 		})();
 
 		(() => {
