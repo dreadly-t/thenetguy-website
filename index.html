@@ -146,28 +146,35 @@
 			border-color: #ffffff;
 		}
 		.regions-fade-stage {
-			background:
-				linear-gradient(to bottom, rgba(3, 20, 40, 0.96), rgba(3, 20, 40, 0.52) 34%, rgba(0, 14, 34, 0.92) 78%, #000e22 100%),
-				linear-gradient(to right, rgba(0, 14, 34, 0.96), rgba(0, 14, 34, 0.48) 50%, rgba(0, 14, 34, 0.82)),
-				url("/assets/images/residential3.jpg") center / cover no-repeat;
-			background-position: center center;
-			min-height: 108vh;
+			--regional-image-opacity: 0.10;
+			background: #000e22;
+			overflow: hidden;
 			position: relative;
 		}
-		.regions-fade-overlay {
+		.regions-fade-stage::before,
+		.regions-fade-stage::after {
+			content: "";
 			position: absolute;
 			inset: 0;
-			z-index: 15;
-			background: #000e22;
-			opacity: 0;
 			pointer-events: none;
+		}
+		.regions-fade-stage::before {
+			z-index: 5;
+			background: url("/assets/images/residential3.jpg") center / cover no-repeat;
+			opacity: var(--regional-image-opacity);
+		}
+		.regions-fade-stage::after {
+			z-index: 10;
+			background:
+				linear-gradient(to bottom, rgba(0, 14, 34, 0.72), rgba(0, 14, 34, 0.58) 45%, rgba(0, 14, 34, 0.72) 100%),
+				linear-gradient(to right, rgba(0, 14, 34, 0.52), rgba(0, 14, 34, 0.32) 50%, rgba(0, 14, 34, 0.52));
 		}
 		.regions-fade-content {
 			position: relative;
 			z-index: 20;
 		}
 		@media (min-width: 768px) {
-			.regions-fade-stage {
+			.regions-fade-stage::before {
 				background-attachment: fixed;
 			}
 		}
@@ -176,7 +183,7 @@
 			.hero-dot {
 				transition: none;
 			}
-			.regions-fade-stage {
+			.regions-fade-stage::before {
 				background-attachment: scroll;
 			}
 		}
@@ -449,15 +456,8 @@
 	</section>
 	<!-- Regional Focus -->
 	<section class="bg-surface-container-lowest" id="about">
-		<!-- Tune fade timing/intensity here: start and end are scroll position ratios, max opacity is 0-1. -->
-		<div
-			class="regions-fade-stage"
-			data-region-fade-stage
-			data-fade-start="0.7"
-			data-fade-end="-0.15"
-			data-fade-max-opacity="0.95">
-		<div class="regions-fade-overlay" data-region-fade-overlay aria-hidden="true"></div>
-		<div class="regions-fade-content max-w-7xl mx-auto px-6 pt-72 md:pt-[30rem] pb-64">
+		<div class="regions-fade-stage">
+		<div class="regions-fade-content max-w-7xl mx-auto px-6 py-36">
 		<div class="mb-16">
 			<h2 class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">
 			where we work
@@ -467,7 +467,7 @@
 
 		<div class="grid md:grid-cols-3 gap-6">
 			<a
-				class="bg-surface-container p-8 relative overflow-hidden group border border-transparent md:hover:border-primary/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+				class="bg-surface-container p-8 min-h-48 md:min-h-72 relative overflow-hidden group border border-transparent md:hover:border-primary/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 				href="#contact">
 				<div class="absolute right-4 bottom-4 opacity-5 pointer-events-none" aria-hidden="true">
 				<span class="material-symbols-outlined text-8xl text-primary">
@@ -858,13 +858,13 @@
 			</h5>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="#">
-				privacy policy
+				href="/index.html#services">
+				residential
 			</a>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="#">
-				terms of service
+				href="/index.html#services">
+				commercial
 			</a>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
@@ -878,12 +878,12 @@
 			</h5>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="#">
+				href="/pages/manawatu.html">
 				manawatū
 			</a>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="#">
+				href="/pages/wellington.html">
 				wellington
 			</a>
 			</div>
@@ -944,42 +944,6 @@
 		});
 
 		startAutoplay();
-		})();
-
-		(() => {
-		const fadeStage = document.querySelector('[data-region-fade-stage]');
-		const fadeOverlay = document.querySelector('[data-region-fade-overlay]');
-		if (!fadeStage || !fadeOverlay) return;
-
-		let ticking = false;
-
-		const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-		const numberFromData = (name, fallback) => {
-			const value = Number.parseFloat(fadeStage.dataset[name]);
-			return Number.isFinite(value) ? value : fallback;
-		};
-
-		const updateFade = () => {
-			const rect = fadeStage.getBoundingClientRect();
-			const fadeStart = window.innerHeight * numberFromData('fadeStart', 0.7);
-			const fadeEnd = rect.height * numberFromData('fadeEnd', -0.15);
-			const fadeMaxOpacity = clamp(numberFromData('fadeMaxOpacity', 0.95), 0, 1);
-			const distance = fadeStart - fadeEnd;
-			const progress = distance > 0 ? clamp((fadeStart - rect.top) / distance, 0, 1) : 0;
-
-			fadeOverlay.style.opacity = (progress * fadeMaxOpacity).toFixed(3);
-			ticking = false;
-		};
-
-		const requestUpdate = () => {
-			if (ticking) return;
-			ticking = true;
-			window.requestAnimationFrame(updateFade);
-		};
-
-		window.addEventListener('scroll', requestUpdate, { passive: true });
-		window.addEventListener('resize', requestUpdate);
-		requestUpdate();
 		})();
 
 		(() => {
