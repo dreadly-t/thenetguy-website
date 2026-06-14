@@ -1,0 +1,133 @@
+html {
+	scroll-padding-top: 6rem;
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body {
+	background-color: #031428;
+	color: #f8f9fa;
+	font-family: 'Inter', sans-serif;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	height: 1.75rem;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	background: #26364c;
+	height: 8px;
+	border-radius: 4px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: #f1c100;
+	border: 2px solid #0b1c31;
+	cursor: pointer;
+	margin-top: -8px;
+}
+
+input[type=range]::-moz-range-track {
+	background: #26364c;
+	height: 8px;
+	border-radius: 4px;
+}
+
+input[type=range]::-moz-range-thumb {
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: #f1c100;
+	border: 2px solid #0b1c31;
+	cursor: pointer;
+}
+
+.hero-slide {
+	opacity: 0;
+	transition: opacity 3s ease;
+}
+
+.hero-slide.is-active {
+	opacity: 1;
+}
+
+.hero-dot {
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 9999px;
+	border: 1px solid rgba(248, 249, 250, 0.75);
+	background: rgba(248, 249, 250, 0.35);
+	transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.hero-dot.is-active {
+	transform: scale(1.15);
+	background: #ffffff;
+	border-color: #ffffff;
+}
+
+.regions-fade-stage {
+	--regional-image-opacity: 0.10;
+	background: #000e22;
+	overflow: hidden;
+	position: relative;
+}
+
+.regions-fade-stage::before,
+.regions-fade-stage::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.regions-fade-stage::before {
+	z-index: 5;
+	background: url("/assets/images/residential3.jpg") center / cover no-repeat;
+	opacity: var(--regional-image-opacity);
+}
+
+.regions-fade-stage::after {
+	z-index: 10;
+	background:
+		linear-gradient(to bottom, rgba(0, 14, 34, 0.72), rgba(0, 14, 34, 0.58) 45%, rgba(0, 14, 34, 0.72) 100%),
+		linear-gradient(to right, rgba(0, 14, 34, 0.52), rgba(0, 14, 34, 0.32) 50%, rgba(0, 14, 34, 0.52));
+}
+
+.regions-fade-content {
+	position: relative;
+	z-index: 20;
+}
+
+.quote-honeypot {
+	position: absolute;
+	left: -9999px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+@media (min-width: 768px) {
+	.regions-fade-stage::before {
+		background-attachment: fixed;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-slide,
+	.hero-dot {
+		transition: none;
+	}
+
+	.regions-fade-stage::before {
+		background-attachment: scroll;
+	}
+}

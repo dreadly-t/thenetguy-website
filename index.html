@@ -5,6 +5,9 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title>the net guy. - industrial safety netting solutions</title>
 	<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+	<script
+		defer
+		src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 	<script id="tailwind-config">
 		tailwind.config = {
 		"darkMode": "class",
@@ -78,116 +81,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
 		rel="stylesheet" />
-
-	<style>
-		html {
-			scroll-padding-top: 6rem;
-		}
-		.material-symbols-outlined {
-			font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-		}
-		body {
-			background-color: #031428;
-			color: #f8f9fa;
-			font-family: 'Inter', sans-serif;
-		}
-		input[type=range] {
-			-webkit-appearance: none;
-			appearance: none;
-			background: transparent;
-			height: 1.75rem;
-		}
-		input[type=range]::-webkit-slider-runnable-track {
-			background: #26364c;
-			height: 8px;
-			border-radius: 4px;
-		}
-		input[type=range]::-webkit-slider-thumb {
-			-webkit-appearance: none;
-			height: 24px;
-			width: 24px;
-			border-radius: 50%;
-			background: #f1c100;
-			border: 2px solid #0b1c31;
-			cursor: pointer;
-			margin-top: -8px;
-		}
-		input[type=range]::-moz-range-track {
-			background: #26364c;
-			height: 8px;
-			border-radius: 4px;
-		}
-		input[type=range]::-moz-range-thumb {
-			height: 24px;
-			width: 24px;
-			border-radius: 50%;
-			background: #f1c100;
-			border: 2px solid #0b1c31;
-			cursor: pointer;
-		}
-		.hero-slide {
-			opacity: 0;
-			transition: opacity 3.0s ease;
-		}
-		.hero-slide.is-active {
-			opacity: 1;
-		}
-		.hero-dot {
-			width: 0.75rem;
-			height: 0.75rem;
-			border-radius: 9999px;
-			border: 1px solid rgba(248, 249, 250, 0.75);
-			background: rgba(248, 249, 250, 0.35);
-			transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
-		}
-		.hero-dot.is-active {
-			transform: scale(1.15);
-			background: #ffffff;
-			border-color: #ffffff;
-		}
-		.regions-fade-stage {
-			--regional-image-opacity: 0.10;
-			background: #000e22;
-			overflow: hidden;
-			position: relative;
-		}
-		.regions-fade-stage::before,
-		.regions-fade-stage::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			pointer-events: none;
-		}
-		.regions-fade-stage::before {
-			z-index: 5;
-			background: url("/assets/images/residential3.jpg") center / cover no-repeat;
-			opacity: var(--regional-image-opacity);
-		}
-		.regions-fade-stage::after {
-			z-index: 10;
-			background:
-				linear-gradient(to bottom, rgba(0, 14, 34, 0.72), rgba(0, 14, 34, 0.58) 45%, rgba(0, 14, 34, 0.72) 100%),
-				linear-gradient(to right, rgba(0, 14, 34, 0.52), rgba(0, 14, 34, 0.32) 50%, rgba(0, 14, 34, 0.52));
-		}
-		.regions-fade-content {
-			position: relative;
-			z-index: 20;
-		}
-		@media (min-width: 768px) {
-			.regions-fade-stage::before {
-				background-attachment: fixed;
-			}
-		}
-		@media (prefers-reduced-motion: reduce) {
-			.hero-slide,
-			.hero-dot {
-				transition: none;
-			}
-			.regions-fade-stage::before {
-				background-attachment: scroll;
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="/assets/css/styles.css" />
 	<link
 		rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@300;400;500;600;700;800;900&display=swap" />
@@ -291,7 +185,6 @@
 			</div>
 		</div>
 		</div>
-		<!-- TODO: Decide whether the hero needs manual controls on mobile and for reduced-motion users. -->
 		<div
 		class="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 md:flex flex-col items-center gap-4"
 		aria-label="Hero slideshow navigation">
@@ -309,18 +202,6 @@
 		<div class="max-w-7xl mx-auto px-6">
 		<div class="grid lg:grid-cols-2 gap-16 items-center">
 			<div class="relative">
-			<!-- TODO: Make text bigger 
-			 drop done right to the next line
-			 -->
-			<!-- Previous h2 implementation, kept for easy restore:
-			<h2
-				class="text-3xl md:text-5xl font-headline font-extrabold text-on-surface lowercase leading-tight mb-8">
-				our mission:
-				<br />
-				<span class="text-primary italic">fall protection</span>
-				done properly.
-			</h2>
-			-->
 			<h2
 				class="text-3xl md:text-5xl font-headline font-extrabold lowercase text-primary leading-tight mb-3">
 				our mission
@@ -329,7 +210,7 @@
 			<div class="w-24 h-1 bg-primary mb-8"></div>
 
 			<h2
-				class="text-3xl md:text-5xl font-headline font-extrabold text-centere lowercase leading-tight mb-8">
+				class="text-3xl md:text-5xl font-headline font-extrabold lowercase leading-tight mb-8">
 				<span class="text-on-surface">fall protection</span>
 				<br class="hidden lg:block" />
 				<span class="text-on-surface italic">done properly.</span>
@@ -686,6 +567,7 @@
 		</div>
 	</section>
 	<script>
+		document.addEventListener('DOMContentLoaded', () => {
 		const inputArea = document.getElementById('inputArea');
 		const areaDisplay = document.getElementById('areaDisplay');
 		const inputWeeks = document.getElementById('inputWeeks');
@@ -694,12 +576,45 @@
 		const resHire = document.getElementById('resHire');
 		const resGST = document.getElementById('resGST');
 		const resGrandTotal = document.getElementById('resGrandTotal');
+		const quoteM2 = document.getElementById('quoteM2');
+		const quoteDuration = document.getElementById('quoteDuration');
+		const quoteForm = document.getElementById('quoteForm');
+		const quoteSubmit = document.getElementById('quoteSubmit');
+		const quoteStatus = document.getElementById('quoteStatus');
+		const quoteWebsite = document.getElementById('quoteWebsite');
+		const emailServiceId = 'YOUR_SERVICE_ID';
+		const emailTemplateId = 'YOUR_TEMPLATE_ID';
+		const emailPublicKey = 'YOUR_PUBLIC_KEY';
+		const submitCooldownMs = 10000;
+		let lastSubmitAt = 0;
+
+		const clampValue = (value, min, max) => {
+			const number = parseFloat(value);
+			if (Number.isNaN(number)) return min;
+			return Math.min(Math.max(number, min), max);
+		};
+
+		const syncFormToEstimator = () => {
+			if (quoteM2) {
+				const area = clampValue(quoteM2.value, parseFloat(inputArea.min), parseFloat(inputArea.max));
+				quoteM2.value = area;
+				inputArea.value = area;
+			}
+			if (quoteDuration) {
+				const weeks = Math.round(clampValue(quoteDuration.value, parseInt(inputWeeks.min), parseInt(inputWeeks.max)));
+				quoteDuration.value = weeks;
+				inputWeeks.value = weeks;
+			}
+			calculate();
+		};
 
 		function calculate() {
 			const area = parseFloat(inputArea.value) || 0;
 			const weeks = parseInt(inputWeeks.value);
 			areaDisplay.innerText = `${area} m²`;
 			durationDisplay.innerText = `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+			if (quoteM2 && document.activeElement !== quoteM2) quoteM2.value = area;
+			if (quoteDuration && document.activeElement !== quoteDuration) quoteDuration.value = weeks;
 			const baseInstall = area * 5.00;
 			const weeklyHire = baseInstall * 0.10;
 			const totalHire = weeklyHire * weeks;
@@ -717,7 +632,55 @@
 		}
 		inputArea.addEventListener('input', calculate);
 		inputWeeks.addEventListener('input', calculate);
+		if (quoteM2) {
+			quoteM2.addEventListener('change', () => {
+				syncFormToEstimator();
+			});
+		}
+		if (quoteDuration) {
+			quoteDuration.addEventListener('change', () => {
+				syncFormToEstimator();
+			});
+		}
+		if (quoteForm) {
+			quoteForm.addEventListener('submit', async (event) => {
+				event.preventDefault();
+				syncFormToEstimator();
+
+				if (quoteWebsite?.value.trim()) return;
+
+				const now = Date.now();
+				if (now - lastSubmitAt < submitCooldownMs) {
+					if (quoteStatus) quoteStatus.textContent = 'Please wait a moment before sending another enquiry.';
+					return;
+				}
+				lastSubmitAt = now;
+
+				const hasEmailConfig = ![emailServiceId, emailTemplateId, emailPublicKey].some((value) => value.startsWith('YOUR_'));
+
+				if (quoteSubmit) quoteSubmit.disabled = true;
+				if (quoteStatus) quoteStatus.textContent = 'Sending your enquiry...';
+
+				try {
+					if (hasEmailConfig && window.emailjs?.sendForm) {
+						await window.emailjs.sendForm(emailServiceId, emailTemplateId, quoteForm, {
+							publicKey: emailPublicKey,
+						});
+						if (quoteStatus) quoteStatus.textContent = 'Thanks, your enquiry has been sent.';
+						quoteForm.reset();
+						calculate();
+					} else if (quoteStatus) {
+						quoteStatus.textContent = 'Email sending is ready to connect once EmailJS IDs are added.';
+					}
+				} catch (_error) {
+					if (quoteStatus) quoteStatus.textContent = 'Something went wrong. Please call or email Tarn directly.';
+				} finally {
+					if (quoteSubmit) quoteSubmit.disabled = false;
+				}
+			});
+		}
 		calculate();
+		});
 	</script>
 	<!-- Quote/Contact Section -->
 	<section class="bg-surface-container-lowest border border-tertiary/10" id="contact">
@@ -730,7 +693,6 @@
 			</h2>
 			<div class="w-24 h-1 bg-primary"></div>
 
-			<!--  -->
 			<p class="mt-6 text-secondary text-lg">
 				Got a job coming up? Send through the details and we'll sort a quote for you.
 			</p>
@@ -792,7 +754,16 @@
 			</div>
 			<div
 			class="bg-surface-container p-8 md:p-12 border border-outline-variant/10 shadow-inner">
-			<form action="#" class="space-y-6" method="POST">
+			<form action="#" class="space-y-6" id="quoteForm" method="POST">
+				<div class="quote-honeypot" aria-hidden="true">
+				<label for="quoteWebsite">Website</label>
+				<input
+					autocomplete="off"
+					id="quoteWebsite"
+					name="website"
+					tabindex="-1"
+					type="text" />
+				</div>
 				<div class="grid md:grid-cols-2 gap-6">
 				<div class="space-y-2">
 					<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
@@ -819,6 +790,46 @@
 				</div>
 				<div class="space-y-2">
 				<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Phone or Email
+				</label>
+				<input
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
+					name="contact"
+					placeholder="Best number or email to reach you"
+					required=""
+					type="text" />
+				</div>
+				<div class="grid md:grid-cols-2 gap-6">
+				<div class="space-y-2">
+					<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Total Area (m²)
+					</label>
+					<input
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
+					id="quoteM2"
+					inputmode="decimal"
+					name="m2"
+					required=""
+					type="number"
+					value="100" />
+				</div>
+				<div class="space-y-2">
+					<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
+					Duration (Weeks)
+					</label>
+					<input
+					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
+					id="quoteDuration"
+					inputmode="numeric"
+					name="duration"
+					required=""
+					step="1"
+					type="number"
+					value="3" />
+				</div>
+				</div>
+				<div class="space-y-2">
+				<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
 					Message / Requirements
 				</label>
 				<textarea
@@ -830,9 +841,15 @@
 				</div>
 				<button
 					class="w-full bg-primary text-on-primary font-headline font-black text-xl py-5 transition-all hover:brightness-110"
+					id="quoteSubmit"
 					type="submit">
 					get your quote
 				</button>
+				<p
+					class="text-sm text-secondary min-h-5"
+					id="quoteStatus"
+					role="status"
+					aria-live="polite"></p>
 			</form>
 			</div>
 		</div>
@@ -878,12 +895,12 @@
 			</h5>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/pages/manawatu.html">
+				href="#">
 				manawatū
 			</a>
 			<a
 				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/pages/wellington.html">
+				href="#">
 				wellington
 			</a>
 			</div>
