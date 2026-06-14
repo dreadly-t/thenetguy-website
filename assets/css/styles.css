@@ -51,6 +51,17 @@ input[type=range]::-moz-range-thumb {
 	cursor: pointer;
 }
 
+input[type=number] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 .hero-slide {
 	opacity: 0;
 	transition: opacity 3s ease;
