@@ -103,7 +103,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .regions-fade-stage::before {
 	z-index: 5;
-	background: url("/assets/images/residential3.jpg") center / cover no-repeat;
+	background: url("../images/residential3.jpg") center / cover no-repeat;
 	opacity: var(--regional-image-opacity);
 }
 
