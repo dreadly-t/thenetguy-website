@@ -756,6 +756,12 @@
 						await window.emailjs.sendForm(emailServiceId, emailTemplateId, quoteForm, {
 							publicKey: emailPublicKey,
 						});
+						if (typeof window.gtag === 'function') {
+							window.gtag('event', 'generate_lead', {
+								lead_source: 'quote_form',
+								form_name: 'quote_request',
+							});
+						}
 						if (quoteStatus) quoteStatus.textContent = 'Thanks, your enquiry has been sent.';
 						quoteForm.reset();
 						calculate();
