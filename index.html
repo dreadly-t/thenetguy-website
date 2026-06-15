@@ -582,9 +582,9 @@
 		const quoteSubmit = document.getElementById('quoteSubmit');
 		const quoteStatus = document.getElementById('quoteStatus');
 		const quoteWebsite = document.getElementById('quoteWebsite');
-		const emailServiceId = 'YOUR_SERVICE_ID';
-		const emailTemplateId = 'YOUR_TEMPLATE_ID';
-		const emailPublicKey = 'YOUR_PUBLIC_KEY';
+		const emailServiceId = 'service_8i3sfta';
+		const emailTemplateId = 'template_7qurcv6';
+		const emailPublicKey = 'Wl1ZvOEmF8vIT4bI7';
 		const submitCooldownMs = 10000;
 		let lastSubmitAt = 0;
 
@@ -790,14 +790,14 @@
 				</div>
 				<div class="space-y-2">
 				<label class="text-xs font-bold uppercase tracking-wider text-outline ml-1">
-					Phone or Email
+					Email Address
 				</label>
 				<input
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
-					name="contact"
-					placeholder="Best number or email to reach you"
+					name="email"
+					placeholder="you@example.com"
 					required=""
-					type="text" />
+					type="email" />
 				</div>
 				<div class="grid md:grid-cols-2 gap-6">
 				<div class="space-y-2">
@@ -808,7 +808,7 @@
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteM2"
 					inputmode="decimal"
-					name="m2"
+					name="quoteM2"
 					required=""
 					type="number"
 					value="100" />
@@ -821,7 +821,7 @@
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteDuration"
 					inputmode="numeric"
-					name="duration"
+					name="quoteDuration"
 					required=""
 					step="1"
 					type="number"
