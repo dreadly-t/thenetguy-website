@@ -89,11 +89,11 @@
 	<body class="selection:bg-primary selection:text-on-primary" id="top">
 	<nav class="fixed top-0 w-full z-50 bg-[#031428]/80 backdrop-blur-md border-b border-outline-variant/10">
 		<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-		<a class="text-[#f1c100] lowercase font-['Golos_Text'] tracking-normal font-bold" href="/index.html#top">
+		<a class="text-[#f1c100] lowercase font-['Golos_Text'] tracking-normal font-bold" href="/">
 			the net guy.
 		</a>
 		<div class="flex items-center space-x-8">
-			<a class="text-sm font-bold uppercase tracking-widest text-primary hover:text-on-surface transition-colors" href="/index.html#contact">
+			<a class="text-sm font-bold uppercase tracking-widest text-primary hover:text-on-surface transition-colors" href="/#contact">
 			check availability
 			</a>
 		</div>
@@ -115,7 +115,7 @@
 				<p class="text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
 				Quick answers about safety nets, fall nets, fall arrest, fall protection, service areas, pricing, and getting a job lined up.
 				</p>
-				<a class="inline-flex bg-primary text-on-primary px-8 py-4 font-['Golos_Text'] font-bold lowercase transition-all hover:brightness-110" href="/index.html#contact">
+				<a class="inline-flex bg-primary text-on-primary px-8 py-4 font-['Golos_Text'] font-bold lowercase transition-all hover:brightness-110" href="/#contact">
 				check availability
 				</a>
 			</div>
@@ -230,7 +230,7 @@
 					<div class="faq-answer" id="faq-answer-14"><div><p class="text-secondary leading-relaxed">Service will be available from August 2026. Send the project location, timing, and basic site details through early if you want to check availability.</p></div></div>
 				</article>
 
-				<a class="block w-full bg-primary text-on-primary px-8 py-4 font-['Golos_Text'] font-bold lowercase text-center transition-all hover:brightness-110" href="/index.html#contact">
+				<a class="block w-full bg-primary text-on-primary px-8 py-4 font-['Golos_Text'] font-bold lowercase text-center transition-all hover:brightness-110" href="/#contact">
 					check availability
 				</a>
 				</div>
@@ -245,7 +245,7 @@
 		<div>
 			<a
 			class="text-xl font-bold text-[#f1c100] lowercase font-['Inter'] mb-6 inline-block"
-			href="/index.html#top">
+			href="/">
 			the net guy.
 			</a>
 				<p class="text-secondary/70 font-['Inter'] text-sm leading-relaxed max-w-full md:max-w-xs">
@@ -257,10 +257,10 @@
 			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
 				Quick Links
 			</h5>
-			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/index.html#mission">
+			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/" data-home-scroll="mission">
 				residential
 			</a>
-			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/index.html#mission">
+			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/" data-home-scroll="mission">
 				commercial
 			</a>
 			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] uppercase" href="/faq/">
@@ -271,10 +271,10 @@
 			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
 				Service Hubs
 			</h5>
-			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/index.html#about">
+			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/" data-home-scroll="about">
 				manawatū
 			</a>
-			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/index.html#about">
+			<a class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase" href="/" data-home-scroll="about">
 				wellington
 			</a>
 			</div>
@@ -297,6 +297,17 @@
 		</div>
 	</footer>
 	<script>
+		(() => {
+		const cleanHomeScrollLinks = Array.from(document.querySelectorAll('[data-home-scroll]'));
+		if (!cleanHomeScrollLinks.length) return;
+
+		cleanHomeScrollLinks.forEach((link) => {
+			link.addEventListener('click', () => {
+			sessionStorage.setItem('theNetGuyScrollTarget', link.dataset.homeScroll);
+			});
+		});
+		})();
+
 		(() => {
 		const items = Array.from(document.querySelectorAll('[data-faq-item]'));
 		const expandAll = document.getElementById('faqExpandAll');

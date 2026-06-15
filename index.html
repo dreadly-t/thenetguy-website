@@ -989,7 +989,7 @@
 		<div>
 			<a
 			class="text-xl font-bold text-[#f1c100] lowercase font-['Inter'] mb-6 inline-block"
-			href="#">
+			href="#top">
 			the net guy.
 			</a>
 				<p class="text-secondary/70 font-['Inter'] text-sm leading-relaxed max-w-full md:max-w-xs">
@@ -1093,16 +1093,36 @@
 
 		(() => {
 		const headerOffset = 96;
+		const shareableHashes = new Set(['#estimator', '#contact']);
+		const cleanHomeUrl = '/';
+		const cleanScrollStorageKey = 'theNetGuyScrollTarget';
 		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 
+		const setUrlForHash = (hash) => {
+			const nextUrl = shareableHashes.has(hash) ? hash : cleanHomeUrl;
+			try {
+			if (shareableHashes.has(hash)) {
+				history.pushState(null, '', nextUrl);
+			} else {
+				history.replaceState(null, '', nextUrl);
+			}
+			} catch (error) {
+			if (shareableHashes.has(hash)) {
+				history.pushState(null, '', hash);
+			} else {
+				history.replaceState(null, '', '#');
+			}
+			}
+		};
+
 		const scrollToHash = (hash, updateHistory = true) => {
-			if (!hash || hash === '#') {
+			if (!hash || hash === '#' || hash === '#top') {
 			window.scrollTo({
 				top: 0,
 				behavior: prefersReducedMotion ? 'auto' : 'smooth'
 			});
-			if (updateHistory) history.pushState(null, '', '#');
+			if (updateHistory) setUrlForHash('#top');
 			return;
 			}
 
@@ -1115,7 +1135,7 @@
 			behavior: prefersReducedMotion ? 'auto' : 'smooth'
 			});
 
-			if (updateHistory) history.pushState(null, '', hash);
+			if (updateHistory) setUrlForHash(hash);
 		};
 
 		anchorLinks.forEach((link) => {
@@ -1133,7 +1153,29 @@
 
 		if (window.location.hash) {
 			window.setTimeout(() => {
-			scrollToHash(window.location.hash, false);
+			const hash = window.location.hash;
+			scrollToHash(hash, false);
+			if (!shareableHashes.has(hash)) {
+				try {
+				history.replaceState(null, '', cleanHomeUrl);
+				} catch (error) {
+				history.replaceState(null, '', '#');
+				}
+			}
+			}, 0);
+			return;
+		}
+
+		const storedTarget = sessionStorage.getItem(cleanScrollStorageKey);
+		if (storedTarget) {
+			sessionStorage.removeItem(cleanScrollStorageKey);
+			window.setTimeout(() => {
+			scrollToHash(`#${storedTarget}`, false);
+			try {
+				history.replaceState(null, '', cleanHomeUrl);
+			} catch (error) {
+				history.replaceState(null, '', '#');
+			}
 			}, 0);
 		}
 		})();
