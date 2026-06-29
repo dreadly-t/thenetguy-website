@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209 209" role="img" aria-labelledby="title desc">
 	<title id="title">the net guy favicon</title>
-	<desc id="desc">A lowercase n in the net guy brand yellow.</desc>
+	<desc id="desc">A lowercase yellow n centred on the net guy dark blue.</desc>
 	<metadata>
 		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 			xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -21,5 +21,9 @@
 			</rdf:Description>
 		</rdf:RDF>
 	</metadata>
-	<path fill="#eac218" d="M28 30h42v21c12.8-15.8 30.2-25 52-25 35.9 0 55 23.6 55 60.5V185h-45V91.2C132 73.6 122.4 64 105.3 64 85.2 64 74 76.3 74 97.6V185H28Z" />
+	<circle cx="104.5" cy="104.5" r="104.5" fill="#0d1f35" />
+	<path
+		fill="#ffc31a"
+		transform="translate(104.5 104.5) scale(.82) translate(-104.5 -104.5)"
+		d="M28 30h42v21c12.8-15.8 30.2-25 52-25 35.9 0 55 23.6 55 60.5V185h-45V91.2C132 73.6 122.4 64 105.3 64 85.2 64 74 76.3 74 97.6V185H28Z" />
 </svg>

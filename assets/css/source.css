@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Golos Text';
+	src: url('../fonts/GolosText-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
 html {
 	scroll-padding-top: 6rem;
 }
@@ -113,9 +121,9 @@ input[type=number]::-webkit-outer-spin-button {
 .regions-fade-stage::before {
 	z-index: 5;
 	background: image-set(
-		url("../images/optimized/residential3-1200.avif") type("image/avif"),
-		url("../images/optimized/residential3-1200.webp") type("image/webp"),
-		url("../images/optimized/residential3-1200.jpg") type("image/jpeg")
+		url("../images/residential/residential3-1200.avif") type("image/avif"),
+		url("../images/residential/residential3-1200.webp") type("image/webp"),
+		url("../images/residential/residential3-1200.jpg") type("image/jpeg")
 	) center / cover no-repeat;
 	opacity: var(--regional-image-opacity);
 }
