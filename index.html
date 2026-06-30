@@ -216,7 +216,7 @@
 		</div>
 	</nav>
 	<!-- Hero Section -->
-	<header class="relative min-h-screen pt-20 overflow-hidden bg-surface-dim">
+	<header class="relative min-h-screen pt-20 overflow-hidden bg-surface-dim" id="hero">
 		<div class="absolute inset-0">
 		<div class="absolute inset-0">
 			<picture class="hero-slide is-active absolute inset-0 block w-full h-full" aria-hidden="true">
@@ -280,6 +280,7 @@
 			<div class="flex flex-wrap gap-4">
 				<a
 				class="bg-primary text-on-primary px-8 py-4 font-headline font-bold uppercase text-lg shadow-2xl transition-transform hover:-translate-y-1"
+				data-analytics-source="hero"
 				href="#contact">
 				get a quote
 				</a>
@@ -673,6 +674,7 @@
 
 				<a
 				class="block w-full text-center bg-primary text-on-primary font-headline font-black text-lg py-4 transition-all hover:brightness-110"
+				data-analytics-source="estimator"
 				href="#contact">
 				get a quote
 				</a>
@@ -707,6 +709,11 @@
 		const submitCooldownMs = 10000;
 		let lastSubmitAt = 0;
 		let emailJsPromise = null;
+		const trackEvent = (eventName) => {
+			if (typeof window.trackAnalyticsEvent === 'function') {
+				window.trackAnalyticsEvent(eventName);
+			}
+		};
 
 		const loadEmailJs = () => {
 			if (window.emailjs?.sendForm) return Promise.resolve(window.emailjs);
@@ -785,10 +792,15 @@
 				event.preventDefault();
 				syncFormToEstimator();
 
-				if (quoteWebsite?.value.trim()) return;
+				if (quoteWebsite?.value.trim()) {
+					trackEvent('quote_submit_spam_blocked');
+					return;
+				}
+				trackEvent('quote_submit_attempt');
 
 				const now = Date.now();
 				if (now - lastSubmitAt < submitCooldownMs) {
+					trackEvent('quote_submit_rate_limited');
 					if (quoteStatus) quoteStatus.textContent = 'Please wait a moment before sending another enquiry.';
 					return;
 				}
@@ -811,6 +823,7 @@
 								form_name: 'quote_request',
 							});
 						}
+						trackEvent('quote_submit_success');
 						if (quoteStatus) quoteStatus.textContent = 'Thanks, your enquiry has been sent.';
 						quoteForm.reset();
 						calculate();
@@ -818,6 +831,7 @@
 						quoteStatus.textContent = 'Email sending is ready to connect once EmailJS IDs are added.';
 					}
 				} catch (_error) {
+					trackEvent('quote_submit_error');
 					if (quoteStatus) quoteStatus.textContent = 'Something went wrong. Please call or email Tarn directly.';
 				} finally {
 					if (quoteSubmit) quoteSubmit.disabled = false;
@@ -866,11 +880,12 @@
 						<button
 						aria-label="Copy phone number"
 						class="copy-trigger flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-outline transition-colors hover:text-primary"
+						data-copy-kind="phone"
 						data-copy-text="021344568"
-					data-copy-default="content_copy"
-					type="button">
-					<span class="material-symbols-outlined text-xl">content_copy</span>
-					</button>
+						data-copy-default="content_copy"
+						type="button">
+						<span class="material-symbols-outlined text-xl">content_copy</span>
+						</button>
 				</div>
 				</div>
 					<div class="flex items-center gap-6">
@@ -888,11 +903,12 @@
 						<button
 						aria-label="Copy email address"
 						class="copy-trigger flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-low text-outline transition-colors hover:text-primary"
-					data-copy-text="tarn@thenetguy.co.nz"
-					data-copy-default="content_copy"
-					type="button">
-					<span class="material-symbols-outlined text-xl">content_copy</span>
-					</button>
+						data-copy-kind="email"
+						data-copy-text="tarn@thenetguy.co.nz"
+						data-copy-default="content_copy"
+						type="button">
+						<span class="material-symbols-outlined text-xl">content_copy</span>
+						</button>
 				</div>
 				</div>
 			</div>
@@ -1075,11 +1091,14 @@
 		(() => {
 		window.dataLayer = window.dataLayer || [];
 		window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+		window.trackAnalyticsEvent = (eventName, parameters = {}) => {
+			window.gtag('event', eventName, parameters);
+		};
+		window.gtag('js', new Date());
+		window.gtag('config', 'G-WB7SWB4SEP');
 
 		const loadAnalytics = () => {
 			if (document.querySelector('script[data-analytics-loader]')) return;
-			window.gtag('js', new Date());
-			window.gtag('config', 'G-WB7SWB4SEP');
 			const script = document.createElement('script');
 			script.async = true;
 			script.dataset.analyticsLoader = 'true';
@@ -1092,6 +1111,73 @@
 		} else {
 			window.addEventListener('load', () => window.setTimeout(loadAnalytics, 1200), { once: true });
 		}
+
+		const trackedOnce = new Set();
+		const trackOnce = (eventName, parameters = {}) => {
+			if (trackedOnce.has(eventName)) return;
+			trackedOnce.add(eventName);
+			window.trackAnalyticsEvent(eventName, parameters);
+		};
+
+		const sectionObserver = new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				const sectionName = entry.target.id;
+				trackOnce(`section_view_${sectionName}`);
+				observer.unobserve(entry.target);
+			});
+		}, { rootMargin: '0px 0px -35% 0px', threshold: 0 });
+
+		document.querySelectorAll('#hero, #mission, #about, #services, #estimator, #contact')
+			.forEach((section) => sectionObserver.observe(section));
+
+		const estimatorInputs = {
+			inputArea: 'area',
+			inputWeeks: 'duration'
+		};
+		Object.entries(estimatorInputs).forEach(([inputId, inputName]) => {
+			const input = document.getElementById(inputId);
+			if (!input) return;
+			input.addEventListener('input', () => {
+				trackOnce('estimator_started');
+				trackOnce(`estimator_${inputName}_adjusted`);
+			});
+		});
+
+		document.querySelectorAll('a[href="#contact"]').forEach((link) => {
+			link.addEventListener('click', () => {
+				const source = link.dataset.analyticsSource
+					|| link.closest('section, header, nav')?.id
+					|| (link.closest('nav') ? 'navigation' : 'page');
+				window.trackAnalyticsEvent(`quote_cta_${source}`);
+			});
+		});
+
+		const quoteForm = document.getElementById('quoteForm');
+		if (quoteForm) {
+			const trackedFields = new Set();
+			quoteForm.addEventListener('input', (event) => {
+				const field = event.target;
+				if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+				if (field.id === 'quoteWebsite' || !field.id || trackedFields.has(field.id)) return;
+
+				trackedFields.add(field.id);
+				trackOnce('quote_form_started');
+				const fieldName = field.id.replace(/^quote/, '').toLowerCase();
+				window.trackAnalyticsEvent(`quote_field_${fieldName}`);
+			});
+		}
+
+		document.querySelectorAll('.copy-trigger').forEach((button) => {
+			button.addEventListener('click', () => {
+				const contactKind = button.dataset.copyKind;
+				if (contactKind) window.trackAnalyticsEvent(`contact_copy_${contactKind}`);
+			});
+		});
+
+		document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+			link.addEventListener('click', () => window.trackAnalyticsEvent('contact_phone_click'));
+		});
 		})();
 
 		(() => {
