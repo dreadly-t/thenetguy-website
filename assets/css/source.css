@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'Golos Text';
+	src: url('../fonts/GolosText-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+html {
+	scroll-padding-top: 6rem;
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body {
+	background-color: #031428;
+	color: #f8f9fa;
+	font-family: 'Inter', sans-serif;
+}
+
+.brand-wordmark {
+	font-family: 'Golos Text', sans-serif;
+	font-weight: 700;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	height: 1.75rem;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	background: #26364c;
+	height: 8px;
+	border-radius: 4px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: #f1c100;
+	border: 2px solid #0b1c31;
+	cursor: pointer;
+	margin-top: -8px;
+}
+
+input[type=range]::-moz-range-track {
+	background: #26364c;
+	height: 8px;
+	border-radius: 4px;
+}
+
+input[type=range]::-moz-range-thumb {
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: #f1c100;
+	border: 2px solid #0b1c31;
+	cursor: pointer;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.hero-slide {
+	opacity: 0;
+	transition: opacity 3s ease;
+}
+
+.hero-slide.is-active {
+	opacity: 1;
+}
+
+.hero-dot {
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 9999px;
+	border: 1px solid rgba(248, 249, 250, 0.75);
+	background: rgba(248, 249, 250, 0.35);
+	transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.hero-dot.is-active {
+	transform: scale(1.15);
+	background: #ffffff;
+	border-color: #ffffff;
+}
+
+.regions-fade-stage {
+	--regional-image-opacity: 0.10;
+	background: #000e22;
+	overflow: hidden;
+	position: relative;
+}
+
+.regions-fade-stage::before,
+.regions-fade-stage::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.regions-fade-stage::before {
+	z-index: 5;
+	background: image-set(
+		url("../images/residential/residential3-1200.avif") type("image/avif"),
+		url("../images/residential/residential3-1200.webp") type("image/webp"),
+		url("../images/residential/residential3-1200.jpg") type("image/jpeg")
+	) center / cover no-repeat;
+	opacity: var(--regional-image-opacity);
+}
+
+.regions-fade-stage::after {
+	z-index: 10;
+	background:
+		linear-gradient(to bottom, rgba(0, 14, 34, 0.72), rgba(0, 14, 34, 0.58) 45%, rgba(0, 14, 34, 0.72) 100%),
+		linear-gradient(to right, rgba(0, 14, 34, 0.52), rgba(0, 14, 34, 0.32) 50%, rgba(0, 14, 34, 0.52));
+}
+
+.regions-fade-content {
+	position: relative;
+	z-index: 20;
+}
+
+.quote-honeypot {
+	position: absolute;
+	left: -9999px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.faq-item {
+	border: 1px solid rgba(68, 71, 77, 0.28);
+	background: rgba(15, 32, 53, 0.86);
+	transition: border-color 0.3s ease, background-color 0.3s ease;
+	cursor: pointer;
+}
+
+.faq-item:hover,
+.faq-item:focus-within,
+.faq-item.is-open {
+	border-color: rgba(241, 193, 0, 0.38);
+	background: rgba(27, 43, 64, 0.94);
+}
+
+.faq-question {
+	cursor: pointer;
+}
+
+.faq-question-label {
+	color: #e4e8ee;
+	line-height: 1.25;
+	transition: color 0.3s ease;
+}
+
+.faq-item:hover .faq-question-label,
+.faq-item:focus-within .faq-question-label,
+.faq-item.is-open .faq-question-label {
+	color: #ffffff;
+}
+
+.faq-answer {
+	display: grid;
+	grid-template-rows: 0fr;
+	opacity: 0;
+	transition: grid-template-rows 0.36s ease, opacity 0.28s ease, margin-top 0.36s ease;
+}
+
+.faq-answer > div {
+	overflow: hidden;
+}
+
+.faq-item:hover .faq-answer,
+.faq-item:focus-within .faq-answer,
+.faq-item.is-open .faq-answer {
+	grid-template-rows: 1fr;
+	opacity: 1;
+	margin-top: 1rem;
+}
+
+.faq-answer p {
+	padding-top: 0.25rem;
+}
+
+.faq-icon {
+	transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-item:hover .faq-icon,
+.faq-item:focus-within .faq-icon,
+.faq-item.is-open .faq-icon {
+	transform: rotate(45deg);
+	color: #f1c100;
+}
+
+@media (min-width: 768px) {
+	.regions-fade-stage::before {
+		background-attachment: fixed;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-slide,
+	.hero-dot,
+	.faq-item,
+	.faq-answer,
+	.faq-icon {
+		transition: none;
+	}
+
+	.regions-fade-stage::before {
+		background-attachment: scroll;
+	}
+}
