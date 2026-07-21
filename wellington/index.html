@@ -204,11 +204,12 @@
 					</div>
 				</div>
 				</div>
-				<p class="text-sm md:text-base text-secondary uppercase tracking-widest leading-relaxed max-w-2xl mb-8">
+				<p class="text-secondary text-lg leading-relaxed max-w-2xl mb-8">
 				Servicing Kāpiti Coast, Porirua, Wellington City, Lower Hutt, Upper Hutt and Wairarapa, including South Wairarapa, Carterton and Masterton.
 				</p>
 				<a
 				class="inline-flex items-center gap-3 text-primary font-headline font-bold text-xl lowercase hover:gap-5 transition-all"
+				data-analytics-source="wellington-timeline"
 				href="/#contact">
 				check availability
 				<span class="material-symbols-outlined">arrow_forward</span>
@@ -316,6 +317,40 @@
 		</div>
 	</footer>
 	<script>
+		(() => {
+		window.dataLayer = window.dataLayer || [];
+		window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+		window.trackAnalyticsEvent = (eventName, parameters = {}) => {
+			window.gtag('event', eventName, parameters);
+		};
+		window.gtag('js', new Date());
+		window.gtag('config', 'G-WB7SWB4SEP');
+
+		const loadAnalytics = () => {
+			if (document.querySelector('script[data-analytics-loader]')) return;
+			const script = document.createElement('script');
+			script.async = true;
+			script.dataset.analyticsLoader = 'true';
+			script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WB7SWB4SEP';
+			document.head.appendChild(script);
+		};
+
+		if ('requestIdleCallback' in window) {
+			window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
+		} else {
+			window.addEventListener('load', () => window.setTimeout(loadAnalytics, 1200), { once: true });
+		}
+
+		document.querySelectorAll('[data-analytics-source]').forEach((link) => {
+			link.addEventListener('click', () => {
+			const source = link.dataset.analyticsSource.replace(/-/g, '_');
+			window.trackAnalyticsEvent(`quote_cta_${source}`, {
+				transport_type: 'beacon',
+			});
+			});
+		});
+		})();
+
 		(() => {
 		const homeSectionLinks = Array.from(document.querySelectorAll('a[href^="/#"]'));
 
