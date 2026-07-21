@@ -29,6 +29,13 @@ body {
 	font-weight: 700;
 }
 
+.net-field {
+	background:
+		linear-gradient(135deg, rgba(241, 193, 0, 0.08) 1px, transparent 1px),
+		linear-gradient(45deg, rgba(135, 210, 223, 0.07) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
 input[type=range] {
 	-webkit-appearance: none;
 	appearance: none;

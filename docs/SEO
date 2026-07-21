@@ -61,9 +61,9 @@ URL	Purpose
 /	Main conversion page + primary authority page
 /safety-net-installation	Main service SEO support page
 /safety-net-compliance	Compliance + authority page
-/pages/manawatu-safety-net-installation	Primary regional SEO page
-/pages/wellington-safety-net-installation	Secondary regional SEO page
-/pages/faq	Long-tail + objection handling
+/manawatu-whanganui/	Primary regional SEO page
+/wellington/	Secondary regional SEO page
+/faq/	Long-tail + objection handling
 
 Optional later:
 
@@ -235,7 +235,7 @@ BS EN 1263 Standards
 Testing & Inspection
 Site Documentation
 Why Compliance Matters
-/pages/manawatu-safety-net-installation
+/manawatu-whanganui/
 Purpose
 
 Primary local SEO page.
@@ -259,7 +259,7 @@ Residential Construction
 Commercial Construction
 Fast Regional Response
 Local Builder Relationships
-/pages/wellington-safety-net-installation
+/wellington/
 Purpose
 
 Secondary regional SEO page.
@@ -276,7 +276,7 @@ Kapiti Coast
 
 without dedicated pages.
 
-/pages/faq
+/faq/
 Purpose
 long-tail SEO
 objection handling
