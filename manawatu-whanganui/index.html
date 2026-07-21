@@ -315,6 +315,27 @@
 	</footer>
 	<script>
 		(() => {
+		const homeSectionLinks = Array.from(document.querySelectorAll('a[href^="/#"]'));
+
+		homeSectionLinks.forEach((link) => {
+			link.addEventListener('click', (event) => {
+			if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+			const target = new URL(link.href).hash.slice(1);
+			if (!target) return;
+
+			try {
+				sessionStorage.setItem('theNetGuyScrollTarget', target);
+				event.preventDefault();
+				window.location.assign('/');
+			} catch (error) {
+				// Keep the direct hash link as the fallback when storage is unavailable.
+			}
+			});
+		});
+		})();
+
+		(() => {
 		document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 			icon.setAttribute('aria-hidden', 'true');
 		});

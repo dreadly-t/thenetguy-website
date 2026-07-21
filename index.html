@@ -1338,14 +1338,17 @@
 		const storedTarget = sessionStorage.getItem(cleanScrollStorageKey);
 		if (storedTarget) {
 			sessionStorage.removeItem(cleanScrollStorageKey);
-			window.setTimeout(() => {
-			scrollToHash(`#${storedTarget}`, false);
-			try {
+			window.scrollTo({ top: 0, behavior: 'auto' });
+			window.requestAnimationFrame(() => {
+			window.requestAnimationFrame(() => {
+				scrollToHash(`#${storedTarget}`, false);
+				try {
 				history.replaceState(null, '', cleanHomeUrl);
-			} catch (error) {
+				} catch (error) {
 				history.replaceState(null, '', '#');
-			}
-			}, 0);
+				}
+			});
+			});
 		}
 		})();
 
