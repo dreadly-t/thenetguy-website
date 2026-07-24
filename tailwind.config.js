@@ -1,5 +1,5 @@
 module.exports = {
-	content: ['./index.html', './faq/index.html', './wellington/index.html', './manawatu-whanganui/index.html', './WIP pages/**/*.html'],
+	content: ['./**/*.html'],
 	darkMode: 'class',
 	theme: {
 		extend: {

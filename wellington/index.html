@@ -86,6 +86,14 @@
 			]
 			},
 			{
+			"@type": "BreadcrumbList",
+			"@id": "https://thenetguy.co.nz/wellington/#breadcrumb",
+			"itemListElement": [
+				{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thenetguy.co.nz/"},
+				{"@type": "ListItem", "position": 2, "name": "Wellington safety net installation", "item": "https://thenetguy.co.nz/wellington/"}
+			]
+			},
+			{
 			"@type": "WebPage",
 			"@id": "https://thenetguy.co.nz/wellington/#webpage",
 			"url": "https://thenetguy.co.nz/wellington/",
@@ -150,7 +158,12 @@
 		</div>
 	</nav>
 
-	<main class="pt-20 bg-surface">
+	<main class="relative pt-20 bg-surface">
+		<div class="page-breadcrumb absolute top-20 left-0 right-0 z-10 max-w-7xl mx-auto px-6 pt-6 text-sm text-secondary" aria-label="Breadcrumb">
+			<a class="hover:text-primary transition-colors" href="/">home</a>
+			<span class="mx-2 text-outline">/</span>
+			<span>wellington</span>
+		</div>
 		<section class="relative overflow-hidden bg-surface-container-lowest net-field border-b border-outline-variant/10">
 		<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/90 via-surface-container-lowest/70 to-surface-container-lowest"></div>
 		<div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32 lg:py-44 text-center">
@@ -228,7 +241,27 @@
 		</div>
 		</section>
 
-		<section class="py-28 md:py-40 bg-surface-container-low border-y border-outline-variant/10">
+	<section class="py-24 md:py-32 bg-surface-container-low border-y border-outline-variant/10">
+		<div class="max-w-7xl mx-auto px-6">
+			<p class="text-primary text-sm font-bold uppercase tracking-widest mb-5">residential + commercial</p>
+			<h2 class="text-4xl md:text-5xl font-headline font-black text-on-surface lowercase mb-4">we do it all.</h2>
+			<div class="w-24 h-1 bg-primary mb-12"></div>
+			<div class="grid md:grid-cols-2 gap-6 lg:gap-10">
+				<a class="service-image-card aspect-[4/3]" href="/residential-safety-net-installation/">
+					<img class="w-full h-full object-cover" src="/assets/images/residential/residential4-1200.jpg" srcset="/assets/images/residential/residential4-768.jpg 768w, /assets/images/residential/residential4-1200.jpg 1200w" sizes="(min-width: 768px) 48vw, 100vw" alt="Residential construction fall arrest safety netting" width="1200" height="900" loading="lazy" decoding="async" />
+					<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/20 to-transparent" aria-hidden="true"></div>
+					<div class="absolute inset-x-0 bottom-0 p-6 md:p-8"><p class="text-primary text-xs font-bold uppercase tracking-widest mb-3">residential</p><h2 class="text-3xl font-headline font-black lowercase mb-3">residential fall arrest nets</h2><p class="text-on-surface/85 leading-relaxed">Fall arrest safety net installation and hire for new builds, extensions and residential construction projects.</p></div>
+				</a>
+				<a class="service-image-card aspect-[4/3]" href="/commercial-safety-net-installation/">
+					<img class="w-full h-full object-cover" src="/assets/images/commercial/commercial2-1200.jpg" srcset="/assets/images/commercial/commercial2-768.jpg 768w, /assets/images/commercial/commercial2-1200.jpg 1200w" sizes="(min-width: 768px) 48vw, 100vw" alt="Commercial construction fall arrest safety netting" width="1200" height="901" loading="lazy" decoding="async" />
+					<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/20 to-transparent" aria-hidden="true"></div>
+					<div class="absolute inset-x-0 bottom-0 p-6 md:p-8"><p class="text-tertiary text-xs font-bold uppercase tracking-widest mb-3">commercial</p><h2 class="text-3xl font-headline font-black lowercase mb-3">commercial construction safety nets</h2><p class="text-on-surface/85 leading-relaxed">Safety net installation and hire for commercial construction projects, including staged and large-scale installations.</p></div>
+				</a>
+			</div>
+		</div>
+	</section>
+
+		<section class="py-28 md:py-40 bg-surface">
 		<div class="max-w-5xl mx-auto px-6 text-center">
 			<p class="text-primary text-sm font-bold uppercase tracking-widest mb-8">
 			starting august 2026
@@ -250,72 +283,42 @@
 		</section>
 	</main>
 
-	<footer class="bg-surface-dim w-full pt-16 pb-8 border-t border-[#44474d]/15">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto">
+<footer class="bg-surface-dim w-full pt-16 pb-8 border-t border-outline-variant/15">
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto">
 		<div>
-			<a
-			class="text-xl font-bold text-[#f1c100] lowercase font-['Golos_Text'] mb-6 inline-block brand-wordmark"
-			href="/#top">
-			the net guy.
-			</a>
-				<p class="text-secondary/70 font-['Inter'] text-sm leading-relaxed max-w-full md:max-w-xs">
-			Safety net installation for residential and commercial builds. Based in Manawatū, working across Wellington and beyond.
-			</p>
+			<a class="text-xl font-bold text-primary lowercase brand-wordmark mb-5 inline-block" href="/">the net guy.</a>
+			<p class="text-secondary/70 text-sm leading-relaxed max-w-full md:max-w-xs">Construction safety net installation and hire for residential and commercial builds across Manawatū and Wellington.</p>
 		</div>
 		<div class="grid grid-cols-2 gap-8">
 			<div class="space-y-3">
-			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
-				Quick Links
-			</h5>
-			<a
-				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/#mission">
-				residential
-			</a>
-			<a
-				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/#mission">
-				commercial
-			</a>
-			<a
-				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] uppercase"
-				href="/faq/">
-				faq
-			</a>
+				<h2 class="font-semibold text-sm uppercase tracking-widest mb-4">services</h2>
+				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/residential-safety-net-installation/">residential</a>
+				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/commercial-safety-net-installation/">commercial</a>
+				<a class="block text-secondary/70 hover:text-primary text-sm uppercase" href="/faq/">faq</a>
 			</div>
-			<div class="space-y-3">
-			<h5 class="font-semibold text-sm uppercase tracking-widest mb-4">
-				Service Hubs
-			</h5>
-			<a
-				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/manawatu-whanganui/">
-				manawatū
-			</a>
-			<a
-				class="block text-secondary/70 hover:text-[#f1c100] transition-colors text-sm font-['Inter'] lowercase"
-				href="/wellington/">
-				wellington
-			</a>
+			<div>
+				<h2 class="font-semibold text-sm uppercase tracking-widest mb-4">locations</h2>
+				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/manawatu-whanganui/">manawatū–whanganui</a>
+				<div class="mt-3 mb-5 ml-1 pl-4 border-l border-primary/30 space-y-2">
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/palmerston-north/">palmerston north</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/feilding-manawatu/">feilding &amp; manawatū</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/levin-horowhenua/">levin &amp; horowhenua</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/tararua/">tararua</a>
+				</div>
+				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/wellington/">wellington</a>
 			</div>
 		</div>
-		<div class="flex flex-col justify-between">
-			<div class="bg-surface-container-lowest p-6 border border-outline-variant/10">
-			<p class="text-[#f1c100] font-bold text-xs uppercase tracking-widest mb-2">
-				compliant installations
-			</p>
-			<p class="text-on-surface-variant text-xs">
-				WorkSafe compliant with FASET-certified installers. BS EN 1263-1 & 1263-2
-			</p>
-			</div>
+		<div class="bg-surface-container-lowest p-6 border border-outline-variant/10 self-start">
+			<p class="text-primary font-bold text-xs uppercase tracking-widest mb-2">compliant installations</p>
+			<p class="text-on-surface-variant text-xs">WorkSafe-aligned planning with FASET-certified installation.</p>
+			<p class="text-on-surface-variant text-xs mt-3">Safety nets tested in accordance with BS EN 1263-1.</p>
+			<p class="text-on-surface-variant text-xs mt-1">Installed and anchored in accordance with BS EN 1263-2.</p>
 		</div>
-		</div>
-		<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-[#44474d]/10">
-		<p class="text-secondary/50 font-['Inter'] text-sm text-center md:text-left">
-			© 2026 The Net Guy. All rights reserved.
-		</p>
-		</div>
-	</footer>
+	</div>
+	<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-outline-variant/10">
+		<p class="text-secondary/50 text-sm text-center md:text-left">© 2026 The Net Guy. All rights reserved.</p>
+	</div>
+</footer>
 	<script>
 		(() => {
 		window.dataLayer = window.dataLayer || [];
