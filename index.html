@@ -695,22 +695,22 @@
 			</div>
 
 			<div class="mt-10">
-				<div class="mb-8 min-w-0">
+				<div class="mb-8 min-w-0 text-right">
 				<p class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1">
 					Estimated Total
 				</p>
 				<h3
-					class="text-4xl md:text-6xl font-headline font-black text-primary tabular-nums text-left sm:text-right min-w-[8ch] sm:min-w-[10ch]"
+					class="text-4xl md:text-6xl font-headline font-black text-primary tabular-nums min-w-[8ch] sm:min-w-[10ch]"
 					id="resGrandTotal">
 					$747.50
 				</h3>
-				<p class="text-xs text-outline leading-relaxed text-left sm:text-right sm:max-w-md sm:ml-auto mt-2 normal-case">
+				<p class="text-xs text-outline leading-relaxed sm:max-w-md sm:ml-auto mt-2 normal-case">
 				*Estimate only. Final quote confirmed after reviewing plans or site details.
 				</p>
 				</div>
 
 				<a
-					class="flex w-full sm:w-fit sm:ml-auto items-center justify-center gap-3 bg-primary text-on-primary px-4 sm:px-6 py-4 font-headline font-black text-sm sm:text-base md:text-lg normal-case text-center shadow-xl transition-all hover:-translate-y-0.5 hover:brightness-110"
+					class="flex w-fit ml-auto items-center justify-center gap-3 bg-primary text-on-primary px-4 sm:px-6 py-4 font-headline font-black text-sm sm:text-base md:text-lg normal-case text-center shadow-xl transition-all hover:-translate-y-0.5 hover:brightness-110"
 					data-analytics-source="estimator"
 					href="#contact">
 					Enquire now
@@ -740,27 +740,23 @@
 		const emailServiceId = 'service_8i3sfta';
 		const emailTemplateId = 'template_7qurcv6';
 		const emailPublicKey = 'Wl1ZvOEmF8vIT4bI7';
+		const emailApiUrl = 'https://api.emailjs.com/api/v1.0/email/send-form';
 		const submitCooldownMs = 10000;
 		let lastSubmitAt = 0;
-		let emailJsPromise = null;
 		const trackEvent = (eventName) => {
 			if (typeof window.trackAnalyticsEvent === 'function') {
 				window.trackAnalyticsEvent(eventName);
 			}
 		};
 
-		const loadEmailJs = () => {
-			if (window.emailjs?.sendForm) return Promise.resolve(window.emailjs);
-			if (emailJsPromise) return emailJsPromise;
-			emailJsPromise = new Promise((resolve, reject) => {
-				const script = document.createElement('script');
-				script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-				script.async = true;
-				script.onload = () => resolve(window.emailjs);
-				script.onerror = reject;
-				document.head.appendChild(script);
+		const sendQuoteForm = async () => {
+			const response = await fetch(emailApiUrl, {
+				method: 'POST',
+				body: new FormData(quoteForm),
 			});
-			return emailJsPromise;
+			if (!response.ok) {
+				throw new Error(`Email service returned ${response.status}`);
+			}
 		};
 
 		const clampValue = (value, min, max) => {
@@ -818,10 +814,6 @@
 			});
 		}
 		if (quoteForm) {
-			quoteForm.addEventListener('focusin', () => {
-				loadEmailJs().catch(() => {});
-			}, { once: true });
-
 			quoteForm.addEventListener('submit', async (event) => {
 				event.preventDefault();
 				syncFormToEstimator();
@@ -847,10 +839,7 @@
 
 				try {
 					if (hasEmailConfig) {
-						const emailjs = await loadEmailJs();
-						await emailjs.sendForm(emailServiceId, emailTemplateId, quoteForm, {
-							publicKey: emailPublicKey,
-						});
+						await sendQuoteForm();
 						if (typeof window.gtag === 'function') {
 							window.gtag('event', 'generate_lead', {
 								lead_source: 'quote_form',
@@ -948,8 +937,16 @@
 			</div>
 			</div>
 			<div
-			class="bg-surface-container p-8 md:p-12 border border-outline-variant/10 shadow-inner">
-			<form action="#" class="space-y-6" id="quoteForm" method="POST">
+			class="bg-surface-container p-6 md:p-12 border border-outline-variant/10 shadow-inner min-w-0">
+			<form
+				action="https://api.emailjs.com/api/v1.0/email/send-form"
+				class="space-y-6"
+				enctype="multipart/form-data"
+				id="quoteForm"
+				method="POST">
+				<input name="service_id" type="hidden" value="service_8i3sfta" />
+				<input name="template_id" type="hidden" value="template_7qurcv6" />
+				<input name="user_id" type="hidden" value="Wl1ZvOEmF8vIT4bI7" />
 				<div class="quote-honeypot" aria-hidden="true">
 				<label for="quoteWebsite">Website</label>
 				<input
@@ -965,6 +962,7 @@
 					Company Name
 					</label>
 					<input
+					autocomplete="organization"
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteCompany"
 					name="company"
@@ -977,6 +975,7 @@
 					Project Location
 					</label>
 					<input
+					autocomplete="address-level2"
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteLocation"
 					name="location"
@@ -990,6 +989,7 @@
 					Email Address
 				</label>
 				<input
+					autocomplete="email"
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteEmail"
 					name="email"
@@ -1006,6 +1006,8 @@
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteM2"
 					inputmode="decimal"
+					max="500"
+					min="50"
 					name="quoteM2"
 					required=""
 					type="number"
@@ -1019,6 +1021,8 @@
 					class="w-full bg-surface-container-high border-none focus:ring-2 focus:ring-primary/20 text-on-surface p-4 rounded-sm"
 					id="quoteDuration"
 					inputmode="numeric"
+					max="24"
+					min="1"
 					name="quoteDuration"
 					required=""
 					step="1"
@@ -1039,7 +1043,7 @@
 					rows="4"></textarea>
 				</div>
 				<button
-					class="group w-full inline-flex items-center justify-center gap-3 bg-primary text-on-primary py-5 transition-all hover:brightness-110"
+					class="group w-full inline-flex items-center justify-center gap-3 bg-primary text-on-primary py-5 transition-all hover:brightness-110 disabled:cursor-wait disabled:opacity-60"
 					id="quoteSubmit"
 					aria-label="Send quote request"
 					type="submit">
