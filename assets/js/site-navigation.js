@@ -179,6 +179,7 @@
 				window.trackAnalyticsEvent('navigation_click', {
 					navigation_label: label,
 					navigation_location: link.closest('[data-mobile-menu]') ? 'mobile_menu' : 'header',
+					transport_type: 'beacon',
 				});
 			}
 

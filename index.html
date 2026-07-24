@@ -1103,31 +1103,9 @@
 		<p class="text-secondary/50 text-sm text-center md:text-left">© 2026 The Net Guy. All rights reserved.</p>
 	</div>
 </footer>
+	<script src="/assets/js/site-analytics.js"></script>
 	<script>
 		(() => {
-		window.dataLayer = window.dataLayer || [];
-		window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
-		window.trackAnalyticsEvent = (eventName, parameters = {}) => {
-			window.gtag('event', eventName, parameters);
-		};
-		window.gtag('js', new Date());
-		window.gtag('config', 'G-WB7SWB4SEP');
-
-		const loadAnalytics = () => {
-			if (document.querySelector('script[data-analytics-loader]')) return;
-			const script = document.createElement('script');
-			script.async = true;
-			script.dataset.analyticsLoader = 'true';
-			script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WB7SWB4SEP';
-			document.head.appendChild(script);
-		};
-
-		if ('requestIdleCallback' in window) {
-			window.requestIdleCallback(loadAnalytics, { timeout: 3000 });
-		} else {
-			window.addEventListener('load', () => window.setTimeout(loadAnalytics, 1200), { once: true });
-		}
-
 		const trackedOnce = new Set();
 		const trackOnce = (eventName, parameters = {}) => {
 			if (trackedOnce.has(eventName)) return;
@@ -1160,15 +1138,6 @@
 			});
 		});
 
-		document.querySelectorAll('a[href="#contact"], a[href="/#contact"]').forEach((link) => {
-			link.addEventListener('click', () => {
-				const source = link.dataset.analyticsSource
-					|| link.closest('section, header, nav')?.id
-					|| (link.closest('nav') ? 'navigation' : 'page');
-				window.trackAnalyticsEvent(`quote_cta_${source}`);
-			});
-		});
-
 		const quoteForm = document.getElementById('quoteForm');
 		if (quoteForm) {
 			const trackedFields = new Set();
@@ -1191,9 +1160,6 @@
 			});
 		});
 
-		document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
-			link.addEventListener('click', () => window.trackAnalyticsEvent('contact_phone_click'));
-		});
 		})();
 
 		(() => {
@@ -1273,7 +1239,8 @@
 		const cleanHomeUrl = '/';
 		const cleanScrollStorageKey = 'theNetGuyScrollTarget';
 		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
+		const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'))
+			.filter((link) => !link.closest('[data-site-header]'));
 
 		const setUrlForHash = (hash) => {
 			const nextUrl = shareableHashes.has(hash) ? hash : cleanHomeUrl;

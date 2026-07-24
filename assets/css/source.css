@@ -105,12 +105,6 @@ body {
 	gap: 0.25rem;
 }
 
-.site-header__primary-links {
-	display: flex;
-	align-items: center;
-	gap: 0.1rem;
-}
-
 .site-header__nav-link,
 .site-directory__toggle {
 	position: relative;
@@ -223,7 +217,6 @@ body {
 	color: #f1c100;
 }
 
-.site-header__quote,
 .site-header__mobile-quote {
 	display: inline-flex;
 	align-items: center;
@@ -241,12 +234,6 @@ body {
 	transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
-.site-header__quote {
-	margin-left: 0.6rem;
-	padding: 0.75rem 1rem;
-}
-
-.site-header__quote:hover,
 .site-header__mobile-quote:hover {
 	background: #f8f9fa;
 	color: #031428;
@@ -521,21 +508,12 @@ footer a[href='/faq/'] {
 		gap: 0.5rem;
 	}
 
-	.site-header__primary-links {
-		gap: 0.2rem;
-	}
-
 	.site-header__nav-link,
 	.site-directory__toggle {
 		padding-right: 0.85rem;
 		padding-left: 0.85rem;
 	}
 
-	.site-header__quote {
-		margin-left: 0.8rem;
-		padding-right: 1.15rem;
-		padding-left: 1.15rem;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -547,7 +525,6 @@ footer a[href='/faq/'] {
 	.site-directory__toggle,
 	.site-directory__chevron,
 	.site-directory__link,
-	.site-header__quote,
 	.site-header__mobile-quote,
 	.site-menu-toggle,
 	.site-menu-toggle__icon,
@@ -678,7 +655,6 @@ footer a[href='/faq/'] {
 .site-cta:focus-visible,
 .service-image-card:focus-visible,
 .area-link-card:focus-visible,
-.area-links-grid > a:focus-visible,
 .nearby-areas .grid > a:focus-visible {
 	outline: 2px solid #f1c100;
 	outline-offset: 4px;
@@ -810,7 +786,6 @@ button.bg-primary.text-on-primary,
 }
 
 .area-link-card,
-.area-links-grid > a,
 .nearby-areas .grid > a {
 	position: relative;
 	display: flex;
@@ -825,7 +800,6 @@ button.bg-primary.text-on-primary,
 }
 
 .area-link-card::after,
-.area-links-grid > a::after,
 .nearby-areas .grid > a::after {
 	position: absolute;
 	right: 1rem;
@@ -839,14 +813,12 @@ button.bg-primary.text-on-primary,
 }
 
 .area-link-card:hover,
-.area-links-grid > a:hover,
 .nearby-areas .grid > a:hover {
 	border-color: rgba(241, 193, 0, 0.28);
 	background: #1b2b40;
 	transform: translateY(-0.2rem);
 }
 
-.area-links-grid > a > *,
 .nearby-areas .grid > a > * {
 	position: relative;
 	z-index: 1;
@@ -1063,7 +1035,6 @@ input[type=number]::-webkit-outer-spin-button {
 	.service-image-card img,
 	.process-card,
 	.area-link-card,
-	.area-links-grid > a,
 	.nearby-areas .grid > a,
 	.faq-item,
 	.faq-answer,
