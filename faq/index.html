@@ -32,7 +32,7 @@
 		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
 		rel="stylesheet" />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=add&amp;display=swap"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=add,arrow_forward&amp;display=swap"
 		rel="stylesheet" />
 	<link rel="stylesheet" href="/assets/css/styles.css" />
 	<script type="application/ld+json">
@@ -52,7 +52,7 @@
 			{"@type": "Question", "name": "What is the difference between fall arrest and fall protection?", "acceptedAnswer": {"@type": "Answer", "text": "Fall protection is the overall approach to controlling height risk. Fall arrest catches or stops a fall after it happens. Safety nets are a fall arrest system when installed with enough clear space below for deflection."}},
 			{"@type": "Question", "name": "Are fall nets the same as safety nets?", "acceptedAnswer": {"@type": "Answer", "text": "Builders often use the terms fall nets and safety nets for the same kind of construction netting. The important part is that the system is suitable for the job and installed correctly."}},
 			{"@type": "Question", "name": "When should safety nets be installed on a build?", "acceptedAnswer": {"@type": "Answer", "text": "Safety nets should be planned and installed before workers need to operate at height above the protected area. Send plans and timing early so clearance, access, anchoring, and handover can be sorted before the next stage of work."}},
-			{"@type": "Question", "name": "How quickly can safety nets be installed?", "acceptedAnswer": {"@type": "Answer", "text": "The Net Guy works to a 1–3 day lead time across Manawatū. Installation time on site depends on access, job size and the details of the build."}},
+			{"@type": "Question", "name": "How quickly can safety nets be installed?", "acceptedAnswer": {"@type": "Answer", "text": "The Net Guy works to a 1–3 day lead time across the Manawatū. Installation time on site depends on access, job size and the details of the build."}},
 			{"@type": "Question", "name": "How much does safety net installation cost?", "acceptedAnswer": {"@type": "Answer", "text": "Pricing depends on the netted area, hire duration, access, and site details. The homepage estimator gives a starting point, with the final quote confirmed after reviewing the job."}},
 			{"@type": "Question", "name": "What details do you need for a quote?", "acceptedAnswer": {"@type": "Answer", "text": "Send the project location, approximate area, expected hire duration, build type, timing, access details, and any plans or photos that show the work area."}},
 			{"@type": "Question", "name": "Do you install safety nets for residential and commercial builds?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Net Guy installs safety nets for residential and commercial construction projects. Safety comes first: if it is not safe, it does not get installed. No shortcuts, no exceptions."}},
@@ -68,20 +68,57 @@
 	</script>
 	</head>
 	<body class="selection:bg-primary selection:text-on-primary" id="top">
-	<nav class="fixed top-0 w-full z-50 bg-[#031428]/80 backdrop-blur-md border-b border-outline-variant/10">
-		<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-		<a class="text-[#f1c100] lowercase font-['Golos_Text'] tracking-normal font-bold brand-wordmark" href="/">
-			the net guy.
-		</a>
-		<div class="flex items-center space-x-8">
-			<a class="text-sm font-bold uppercase tracking-widest text-primary hover:text-on-surface transition-colors" href="/#contact">
-			check availability
-			</a>
+	<a class="skip-link" href="#main-content">skip to main content</a>
+	<nav class="site-header" data-site-header aria-label="Primary">
+		<div class="site-header__inner">
+			<a class="site-header__brand" href="/" aria-label="The Net Guy home">the net guy.</a>
+			<div class="site-header__desktop">
+				<a class="site-header__nav-link" href="/#mission" data-nav-section="mission">about</a>
+				<div class="site-directory" data-site-directory>
+					<button class="site-directory__toggle" type="button" aria-expanded="false" aria-controls="site-directory-panel" data-directory-toggle>service + areas <span class="site-directory__chevron" aria-hidden="true"></span></button>
+					<div class="site-directory__panel" id="site-directory-panel" data-directory-panel hidden><div class="site-directory__grid">
+						<div><p class="site-directory__label">services</p><div class="site-directory__links">
+							<a class="site-directory__link" href="/residential-safety-net-installation/" data-nav-path="/residential-safety-net-installation/">residential safety nets</a>
+							<a class="site-directory__link" href="/commercial-safety-net-installation/" data-nav-path="/commercial-safety-net-installation/">commercial safety nets</a>
+						</div></div>
+						<div><p class="site-directory__label">areas</p><div class="site-directory__links">
+							<a class="site-directory__link" href="/manawatu-whanganui/" data-nav-path="/manawatu-whanganui/">manawatū–whanganui</a>
+							<a class="site-directory__link" href="/wellington/" data-nav-path="/wellington/">wellington</a>
+						</div></div>
+					</div></div>
+				</div>
+				<a class="site-header__nav-link" href="/#estimator" data-nav-section="estimator">pricing</a>
+				<a class="site-header__nav-link" href="/faq/" data-nav-path="/faq/">faq</a>
+				<a class="site-header__nav-link" href="/#contact" data-nav-section="contact" data-analytics-source="navigation">contact</a>
+			</div>
+			<div class="site-header__mobile-actions">
+				<a class="site-header__mobile-quote" href="/#contact" aria-label="Get a quote" data-analytics-source="navigation">quote</a>
+				<button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-site-menu" aria-label="Open main menu" data-mobile-menu-toggle><span class="site-menu-toggle__icon" aria-hidden="true"></span></button>
+			</div>
 		</div>
-		</div>
+		<div class="mobile-site-menu" id="mobile-site-menu" data-mobile-menu aria-hidden="true" hidden><div class="mobile-site-menu__inner">
+			<div class="mobile-site-menu__primary">
+				<a class="mobile-site-menu__primary-link" href="/#mission" data-nav-section="mission">about</a>
+				<a class="mobile-site-menu__primary-link" href="/#estimator" data-nav-section="estimator">pricing</a>
+				<a class="mobile-site-menu__primary-link" href="/faq/" data-nav-path="/faq/">faq</a>
+				<a class="mobile-site-menu__primary-link" href="/#contact" data-nav-section="contact" data-analytics-source="navigation">contact</a>
+			</div>
+			<div class="mobile-site-menu__groups">
+				<div><p class="mobile-site-menu__label">services</p><div class="mobile-site-menu__links">
+					<a class="mobile-site-menu__link" href="/residential-safety-net-installation/" data-nav-path="/residential-safety-net-installation/">residential safety nets</a>
+					<a class="mobile-site-menu__link" href="/commercial-safety-net-installation/" data-nav-path="/commercial-safety-net-installation/">commercial safety nets</a>
+				</div></div>
+				<div><p class="mobile-site-menu__label">areas</p><div class="mobile-site-menu__links">
+					<a class="mobile-site-menu__link" href="/manawatu-whanganui/" data-nav-path="/manawatu-whanganui/">manawatū–whanganui</a>
+					<a class="mobile-site-menu__link" href="/wellington/" data-nav-path="/wellington/">wellington</a>
+				</div></div>
+			</div>
+			<a class="mobile-site-menu__phone" href="tel:+6421344568" aria-label="Call Tarn on 021 344 568">call Tarn <span>021 344 568</span></a>
+		</div></div>
+		<button class="site-menu-backdrop" type="button" aria-label="Close main menu" data-menu-backdrop hidden></button>
 	</nav>
 
-	<main class="pt-20 bg-surface-container-lowest">
+	<main class="pt-14 bg-surface-container-lowest" id="main-content" tabindex="-1">
 		<section class="regions-fade-stage min-h-screen">
 		<div class="regions-fade-content max-w-7xl mx-auto px-6 py-24 md:py-32">
 			<div class="grid lg:grid-cols-[0.78fr_1.22fr] gap-12 lg:gap-16 items-start">
@@ -93,11 +130,12 @@
 				common questions
 				</h1>
 				<div class="w-24 h-1 bg-primary mb-6"></div>
-				<p class="text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
+				<p class="text-lg md:text-2xl font-body text-secondary leading-relaxed max-w-2xl mb-10">
 				Quick answers about safety nets, fall nets, fall arrest, fall protection, service areas, pricing, and getting a job lined up.
 				</p>
-				<a class="inline-flex bg-primary text-on-primary px-8 py-4 font-['Inter'] font-bold lowercase transition-all hover:brightness-110" href="/#contact">
-				check availability
+				<a class="inline-flex items-center gap-3 text-primary font-headline font-bold text-xl lowercase transition-all hover:gap-5" href="/#contact">
+					check availability
+					<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
 				</a>
 			</div>
 
@@ -145,7 +183,7 @@
 					<span class="faq-question-label text-lg md:text-xl font-['Inter'] font-bold lowercase">how quickly can safety nets be installed?</span>
 					<span class="material-symbols-outlined faq-icon text-3xl text-outline shrink-0" aria-hidden="true">add</span>
 					</button>
-					<div class="faq-answer" id="faq-answer-5"><div><p class="text-secondary leading-relaxed">The Net Guy works to a 1–3 day lead time across Manawatū. Installation time on site depends on access, job size and the details of the build.</p></div></div>
+					<div class="faq-answer" id="faq-answer-5"><div><p class="text-secondary leading-relaxed">The Net Guy works to a 1–3 day lead time across the Manawatū. Installation time on site depends on access, job size and the details of the build.</p></div></div>
 				</article>
 				<article class="faq-item p-6 md:p-8" data-faq-item>
 					<button class="faq-question flex w-full items-center justify-between gap-6 text-left" type="button" aria-expanded="false" aria-controls="faq-answer-6">
@@ -217,10 +255,6 @@
 					</button>
 					<div class="faq-answer" id="faq-answer-14"><div><p class="text-secondary leading-relaxed">Service will be available from August 2026. Send the project location, timing, and basic site details through early if you want to check availability.</p></div></div>
 				</article>
-
-				<a class="block w-full bg-primary text-on-primary px-8 py-4 font-['Inter'] font-bold lowercase text-center transition-all hover:brightness-110" href="/#contact">
-					check availability
-				</a>
 				</div>
 				</div>
 			</div>
@@ -229,7 +263,7 @@
 		</main>
 
 <footer class="bg-surface-dim w-full pt-16 pb-8 border-t border-outline-variant/15">
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto">
+	<div class="grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr_1.35fr] gap-8 lg:gap-12 px-8 max-w-7xl mx-auto">
 		<div>
 			<a class="text-xl font-bold text-primary lowercase brand-wordmark mb-5 inline-block" href="/">the net guy.</a>
 			<p class="text-secondary/70 text-sm leading-relaxed max-w-full md:max-w-xs">Construction safety net installation and hire for residential and commercial builds across Manawatū and Wellington.</p>
@@ -237,27 +271,27 @@
 		<div class="grid grid-cols-2 gap-8">
 			<div class="space-y-3">
 				<h2 class="font-semibold text-sm uppercase tracking-widest mb-4">services</h2>
-				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/residential-safety-net-installation/">residential</a>
-				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/commercial-safety-net-installation/">commercial</a>
-				<a class="block text-secondary/70 hover:text-primary text-sm uppercase" href="/faq/">faq</a>
+				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/residential-safety-net-installation/">Residential</a>
+				<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/commercial-safety-net-installation/">Commercial</a>
+				<a class="block text-secondary/70 hover:text-primary text-sm uppercase" href="/faq/">FAQ</a>
 			</div>
 			<div>
 				<h2 class="font-semibold text-sm uppercase tracking-widest mb-4">locations</h2>
-				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/manawatu-whanganui/">manawatū–whanganui</a>
+				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/manawatu-whanganui/">Manawatū–Whanganui</a>
 				<div class="mt-3 mb-5 ml-1 pl-4 border-l border-primary/30 space-y-2">
-					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/palmerston-north/">palmerston north</a>
-					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/feilding-manawatu/">feilding &amp; manawatū</a>
-					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/levin-horowhenua/">levin &amp; horowhenua</a>
-					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/tararua/">tararua</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/palmerston-north/">Palmerston North</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/feilding-manawatu/">Feilding &amp; Manawatū</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/levin-horowhenua/">Levin &amp; Horowhenua</a>
+					<a class="block text-secondary/70 hover:text-primary text-sm lowercase" href="/tararua/">Tararua</a>
 				</div>
-				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/wellington/">wellington</a>
+				<a class="block text-primary hover:text-on-surface text-sm font-bold lowercase" href="/wellington/">Wellington</a>
 			</div>
 		</div>
 		<div class="bg-surface-container-lowest p-6 border border-outline-variant/10 self-start">
 			<p class="text-primary font-bold text-xs uppercase tracking-widest mb-2">compliant installations</p>
 			<p class="text-on-surface-variant text-xs">WorkSafe-aligned planning with FASET-certified installation.</p>
 			<p class="text-on-surface-variant text-xs mt-3">Safety nets tested in accordance with BS EN 1263-1.</p>
-			<p class="text-on-surface-variant text-xs mt-1">Installed and anchored in accordance with BS EN 1263-2.</p>
+			<p class="text-on-surface-variant text-xs mt-1">Installed and anchored in accordance with <span class="whitespace-nowrap">BS EN 1263-2.</span></p>
 		</div>
 	</div>
 	<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-outline-variant/10">
@@ -327,7 +361,6 @@
 			item.addEventListener('click', () => {
 			const willOpen = !item.classList.contains('is-open');
 			setItemOpen(item, willOpen);
-			if (!willOpen) button.blur();
 			updateExpandAll();
 			});
 		});
@@ -342,5 +375,6 @@
 		}
 		})();
 	</script>
+	<script src="/assets/js/site-navigation.js"></script>
 	</body>
 </html>
