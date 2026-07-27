@@ -2177,6 +2177,32 @@ footer a[href='/faq/'] {
   text-transform: uppercase;
 }
 
+.footer-accreditations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.footer-accreditation {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.footer-accreditation img {
+  width: 100%;
+  max-width: 8rem;
+  max-height: 4rem;
+  object-fit: contain;
+}
+
+.footer-accreditation--reserved {
+  visibility: hidden;
+}
+
 #main-content,
 #mission,
 #services,
