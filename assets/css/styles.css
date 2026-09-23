@@ -697,6 +697,10 @@ video {
   margin-left: 0.25rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -843,6 +847,11 @@ video {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .w-full {
@@ -1712,9 +1721,39 @@ video {
 }
 
 @font-face {
+  font-family: 'Inter';
+
+  src: url('../fonts/Inter-Macrons.woff2') format('woff2');
+
+  font-style: normal;
+
+  font-weight: 400 700;
+
+  font-display: swap;
+
+  unicode-range: U+0100-0101, U+0112-0113, U+012A-012B, U+014C-014D, U+016A-016B;
+}
+
+@font-face {
+  font-family: 'Inter';
+
+  src: url('../fonts/Inter-Latin.woff2') format('woff2');
+
+  font-style: normal;
+
+  font-weight: 400 700;
+
+  font-display: swap;
+
+  unicode-range: U+0020-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+
+@font-face {
   font-family: 'Golos Text';
 
-  src: url('../fonts/GolosText-Bold.ttf') format('truetype');
+  src:
+		url('../fonts/GolosText-Bold.woff2') format('woff2'),
+		url('../fonts/GolosText-Bold.ttf') format('truetype');
 
   font-style: normal;
 
@@ -2177,6 +2216,33 @@ footer a[href='/wellington/'] {
 
 footer a[href='/faq/'] {
   text-transform: uppercase;
+}
+
+.footer-accreditations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.footer-accreditation {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.footer-accreditation img {
+  width: 100%;
+  max-width: 8rem;
+  max-height: 4rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.footer-accreditation--reserved {
+  visibility: hidden;
 }
 
 #main-content,
@@ -2914,6 +2980,14 @@ input[type=number]::-webkit-outer-spin-button {
   outline-color: color-mix(in srgb, var(--yellow) calc(1 * 100%), transparent);
 }
 
+.disabled\:cursor-wait:disabled {
+  cursor: wait;
+}
+
+.disabled\:opacity-60:disabled {
+  opacity: 0.6;
+}
+
 .group:hover .group-hover\:-translate-y-1 {
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2941,11 +3015,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: auto;
   }
 
-  .sm\:w-fit {
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-
   .sm\:min-w-\[10ch\] {
     min-width: 10ch;
   }
@@ -2965,10 +3034,6 @@ input[type=number]::-webkit-outer-spin-button {
   .sm\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-
-  .sm\:text-right {
-    text-align: right;
   }
 
   .sm\:text-5xl {
