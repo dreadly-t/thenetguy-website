@@ -1,24 +1,76 @@
 <!DOCTYPE html>
+<!--
+	AREA PAGE TEMPLATE
+	==================
+	The layout for a single-town area page, e.g. /palmerston-north/, /feilding-manawatu/.
+	(Region pages like /manawatu-whanganui/ and /wellington/ use their own layout.)
+
+	To add a new area page (e.g. a Wellington suburb):
+	1. Make a folder named after the URL, e.g. lower-hutt/, and copy this file into it as index.html.
+	2. Replace every {{PLACEHOLDER}} below (list further down). Search the file for "{{" to find them all.
+	3. Delete this comment.
+	4. Run `npm run build`. It refreshes the header, footer and back-to-top button from index.html
+	   and rebuilds the CSS.
+	5. Link the new page from:
+	   - the footer "locations" list in index.html (then build again so every page gets it)
+	   - its region page's area cards (e.g. wellington/index.html)
+	   - the "nearby service areas" cards on neighbouring area pages
+	   - sitemap.xml and llms.txt
+	   - `parentPathByChild` in assets/js/site-navigation.js, so the header highlights the region
+
+	Placeholders
+	------------
+	{{SLUG}}             URL folder name, e.g. lower-hutt
+	{{PAGE_TITLE}}       <title>, e.g. Safety Net Installation Lower Hutt | The Net Guy
+	{{META_DESCRIPTION}} ~150 characters; mention "fall arrest nets" and the lead time
+	{{AREA_NAME}}        Display name for the breadcrumb, e.g. Lower Hutt  (use &amp; for &)
+	{{AREA_LOWER}}       Lowercase name for headings and labels, e.g. lower hutt
+	{{REGION_NAME}}      Parent region, e.g. Wellington  or  Manawatū–Whanganui
+	{{REGION_URL}}       Parent region page, e.g. /wellington/  or  /manawatu-whanganui/
+	{{AREA_SERVED}}      Schema.org places, one per town, comma separated, e.g.
+	                     				{"@type": "Place", "name": "Lower Hutt, New Zealand"},
+	                     				{"@type": "Place", "name": "Petone, New Zealand"}
+	{{HERO_LEDE}}        One sentence, ~15–20 words. Keep "fall arrest" and "fall protection" in it.
+	{{LEAD_TIME_VALUE}}  First stat, e.g. 1–3 days  (Wellington: check what lead time you quote there)
+	{{LEAD_TIME_LABEL}}  e.g. lead time across <span class="whitespace-nowrap">Manawatū–Whanganui</span>
+	{{INSTALL_TEXT}}     "Where we install" paragraph, ~30–40 words, opening with "Fall arrest safety nets for…"
+	{{LOCAL_TEXT}}       "Around {town}" paragraph, ~50–70 words. MUST be genuinely local: real streets,
+	                     subdivisions or growth areas you work in, how far it is from Palmy. This is what
+	                     keeps Google from treating the page as a copy of the others. No filler.
+	{{LOCAL_ASIDE}}      One friendly, dry line about the place. Affectionate, never a dig at the locals.
+	                     e.g. Palmy’s wind turbines are visible from town for a reason. Our nets are anchored for Manawatū wind, which is saying something.
+	{{TOWN_LIST}}        Towns covered, e.g. <span>Lower Hutt</span><span>Petone</span><span>Wainuiomata</span>
+	{{PHOTO_SRC}}        /assets/images/residential/residential3-1200.jpg  (also used for the social share image)
+	{{PHOTO_SRCSET}}     /assets/images/residential/residential3-768.jpg 768w, /assets/images/residential/residential3-1200.jpg 1200w
+	{{PHOTO_WIDTH}}      Pixel size of the 1200 image, e.g. 1200
+	{{PHOTO_HEIGHT}}     e.g. 900
+	{{PHOTO_ALT}}        e.g. Safety netting installed on a Lower Hutt residential build
+	{{NEARBY_CARDS}}     Three neighbouring area cards, one per line, e.g.
+	                     <a class="area-link-card" href="/porirua/"><h3 class="relative z-10 text-2xl font-inter font-semibold text-yellow mb-3">Porirua</h3><p class="relative z-10 text-grey-200">Safety net installation in Porirua, …</p></a>
+
+	The shared styles for this layout (.area-hero, .glance-*, .local-notes-aside, .process-*, .showcase-image,
+	.service-image-card__text, .final-cta) live in assets/css/source.css.
+-->
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<title>Safety Net Installation Palmerston North | The Net Guy</title>
-	<meta name="description" content="Local, owner-operated safety net specialist for Palmerston North residential and commercial construction. FASET-certified fall arrest net installer with a 1–3 day lead time." />
+	<title>{{PAGE_TITLE}}</title>
+	<meta name="description" content="{{META_DESCRIPTION}}" />
 	<meta name="robots" content="index, follow, max-image-preview:large" />
-	<link rel="canonical" href="https://thenetguy.co.nz/palmerston-north/" />
+	<link rel="canonical" href="https://thenetguy.co.nz/{{SLUG}}/" />
 	<meta name="theme-color" content="#031428" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="The Net Guy" />
-	<meta property="og:title" content="Safety Net Installation Palmerston North | The Net Guy" />
-	<meta property="og:description" content="Local, owner-operated safety net specialist for Palmerston North residential and commercial construction. FASET-certified fall arrest net installer with a 1–3 day lead time." />
-	<meta property="og:url" content="https://thenetguy.co.nz/palmerston-north/" />
-	<meta property="og:image" content="https://thenetguy.co.nz/assets/images/residential/residential1-1200.jpg" />
+	<meta property="og:title" content="{{PAGE_TITLE}}" />
+	<meta property="og:description" content="{{META_DESCRIPTION}}" />
+	<meta property="og:url" content="https://thenetguy.co.nz/{{SLUG}}/" />
+	<meta property="og:image" content="https://thenetguy.co.nz{{PHOTO_SRC}}" />
 	<meta property="og:locale" content="en_NZ" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Safety Net Installation Palmerston North | The Net Guy" />
-	<meta name="twitter:description" content="Local, owner-operated safety net specialist for Palmerston North residential and commercial construction. FASET-certified fall arrest net installer with a 1–3 day lead time." />
-	<meta name="twitter:image" content="https://thenetguy.co.nz/assets/images/residential/residential1-1200.jpg" />
+	<meta name="twitter:title" content="{{PAGE_TITLE}}" />
+	<meta name="twitter:description" content="{{META_DESCRIPTION}}" />
+	<meta name="twitter:image" content="https://thenetguy.co.nz{{PHOTO_SRC}}" />
 
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon/thenetguy-favicon.svg" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -34,38 +86,19 @@
 	"@graph": [
 		{
 			"@type": "Service",
-			"@id": "https://thenetguy.co.nz/palmerston-north/#service",
-			"name": "safety net installation in palmerston north",
+			"@id": "https://thenetguy.co.nz/{{SLUG}}/#service",
+			"name": "safety net installation in {{AREA_LOWER}}",
 			"serviceType": "Construction fall arrest safety net installation and hire",
 			"provider": {
 				"@id": "https://thenetguy.co.nz/#business"
 			},
 			"areaServed": [
-				{
-					"@type": "Place",
-					"name": "Palmerston North, New Zealand"
-				},
-				{
-					"@type": "Place",
-					"name": "Ashhurst, New Zealand"
-				},
-				{
-					"@type": "Place",
-					"name": "Bunnythorpe, New Zealand"
-				},
-				{
-					"@type": "Place",
-					"name": "Longburn, New Zealand"
-				},
-				{
-					"@type": "Place",
-					"name": "Linton, New Zealand"
-				}
+{{AREA_SERVED}}
 			]
 		},
 		{
 			"@type": "BreadcrumbList",
-			"@id": "https://thenetguy.co.nz/palmerston-north/#breadcrumb",
+			"@id": "https://thenetguy.co.nz/{{SLUG}}/#breadcrumb",
 			"itemListElement": [
 				{
 					"@type": "ListItem",
@@ -76,23 +109,23 @@
 				{
 					"@type": "ListItem",
 					"position": 2,
-					"name": "Manawatū–Whanganui",
-					"item": "https://thenetguy.co.nz/manawatu-whanganui/"
+					"name": "{{REGION_NAME}}",
+					"item": "https://thenetguy.co.nz{{REGION_URL}}"
 				},
 				{
 					"@type": "ListItem",
 					"position": 3,
-					"name": "palmerston north",
-					"item": "https://thenetguy.co.nz/palmerston-north/"
+					"name": "{{AREA_LOWER}}",
+					"item": "https://thenetguy.co.nz/{{SLUG}}/"
 				}
 			]
 		},
 		{
 			"@type": "WebPage",
-			"@id": "https://thenetguy.co.nz/palmerston-north/#webpage",
-			"url": "https://thenetguy.co.nz/palmerston-north/",
-			"name": "Safety Net Installation Palmerston North | The Net Guy",
-			"description": "Local, owner-operated safety net specialist for Palmerston North residential and commercial construction. FASET-certified fall arrest net installer with a 1–3 day lead time.",
+			"@id": "https://thenetguy.co.nz/{{SLUG}}/#webpage",
+			"url": "https://thenetguy.co.nz/{{SLUG}}/",
+			"name": "{{PAGE_TITLE}}",
+			"description": "{{META_DESCRIPTION}}",
 			"isPartOf": {
 				"@id": "https://thenetguy.co.nz/#website"
 			},
@@ -100,10 +133,10 @@
 				"@id": "https://thenetguy.co.nz/#business"
 			},
 			"mainEntity": {
-				"@id": "https://thenetguy.co.nz/palmerston-north/#service"
+				"@id": "https://thenetguy.co.nz/{{SLUG}}/#service"
 			},
 			"breadcrumb": {
-				"@id": "https://thenetguy.co.nz/palmerston-north/#breadcrumb"
+				"@id": "https://thenetguy.co.nz/{{SLUG}}/#breadcrumb"
 			},
 			"inLanguage": "en-NZ"
 		}
@@ -190,17 +223,17 @@
 		<div class="absolute inset-0 bg-gradient-to-b from-navy-950/90 via-navy-950/70 to-navy-950"></div>
 		<div class="page-breadcrumb relative z-10 w-full max-w-7xl mx-auto px-6 pt-6 text-sm text-grey-200" aria-label="Breadcrumb">
 			<a href="/">home</a><span class="mx-2 text-grey-500">/</span>
-			<a href="/manawatu-whanganui/">Manawatū–Whanganui</a><span class="mx-2 text-grey-500">/</span>
-			<span>Palmerston North</span>
+			<a href="{{REGION_URL}}">{{REGION_NAME}}</a><span class="mx-2 text-grey-500">/</span>
+			<span>{{AREA_NAME}}</span>
 		</div>
 		<div class="area-hero-content relative w-full max-w-7xl mx-auto px-6 py-16 text-center">
 			<p class="text-yellow text-xs font-semibold uppercase tracking-widest mb-6 flex items-center justify-center gap-3">
 				<span class="w-8 h-px bg-yellow"></span>
-				palmerston north fall protection
+				{{AREA_LOWER}} fall protection
 				<span class="w-8 h-px bg-yellow"></span>
 			</p>
-			<h1 class="text-5xl md:text-7xl leading-[0.95] mb-10 text-grey-50 lowercase font-golos font-semibold tracking-normal max-w-4xl mx-auto"><span class="block text-yellow">palmerston north</span> safety net installation</h1>
-			<p class="text-lg md:text-2xl font-inter text-grey-200 leading-relaxed max-w-2xl mx-auto mb-12">Fall arrest nets and fall protection for residential and commercial builds. Based right here in Palmy.</p>
+			<h1 class="text-5xl md:text-7xl leading-[0.95] mb-10 text-grey-50 lowercase font-golos font-semibold tracking-normal max-w-4xl mx-auto"><span class="block text-yellow">{{AREA_LOWER}}</span> safety net installation</h1>
+			<p class="text-lg md:text-2xl font-inter text-grey-200 leading-relaxed max-w-2xl mx-auto mb-12">{{HERO_LEDE}}</p>
 			<div><a class="site-cta site-cta-primary uppercase" href="/#contact">check availability</a></div>
 		</div>
 	</section>
@@ -208,8 +241,8 @@
 		<div class="max-w-5xl mx-auto px-6">
 			<div class="glance-grid">
 				<div class="glance-item">
-					<p class="glance-value">1–3 days</p>
-					<p class="glance-label">lead time across <span class="whitespace-nowrap">Manawatū–Whanganui</span></p>
+					<p class="glance-value">{{LEAD_TIME_VALUE}}</p>
+					<p class="glance-label">{{LEAD_TIME_LABEL}}</p>
 				</div>
 				<div class="glance-item">
 					<p class="glance-value">Reliable</p>
@@ -227,20 +260,20 @@
 			<div>
 				<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4">where we install</h2>
 				<div class="w-24 h-1 bg-yellow mb-10"></div>
-				<p class="text-grey-200 text-lg leading-relaxed max-w-xl mb-10">Fall arrest safety nets for new homes, multi-storey builds and larger staged commercial work. Every job is checked for access, anchor points, fall distance and clearance before installation.</p>
-				<div class="town-list"><span>Palmerston North</span><span>Ashhurst</span><span>Bunnythorpe</span><span>Longburn</span><span>Linton</span></div>
+				<p class="text-grey-200 text-lg leading-relaxed max-w-xl mb-10">{{INSTALL_TEXT}}</p>
+				<div class="town-list">{{TOWN_LIST}}</div>
 			</div>
 			<div class="showcase-image aspect-[4/3]">
-				<img class="w-full h-full object-cover" src="/assets/images/residential/residential3-1200.jpg" srcset="/assets/images/residential/residential3-768.jpg 768w, /assets/images/residential/residential3-1200.jpg 1200w" sizes="(min-width: 1024px) 45vw, 100vw" alt="Safety netting installed on a Palmerston North residential build" width="1200" height="830" loading="lazy" decoding="async" />
+				<img class="w-full h-full object-cover" src="{{PHOTO_SRC}}" srcset="{{PHOTO_SRCSET}}" sizes="(min-width: 1024px) 45vw, 100vw" alt="{{PHOTO_ALT}}" width="{{PHOTO_WIDTH}}" height="{{PHOTO_HEIGHT}}" loading="lazy" decoding="async" />
 			</div>
 		</div>
 	</section>
 	<section class="local-notes py-28 md:py-40 bg-navy-850 text-center">
 		<div class="max-w-3xl mx-auto px-6">
-			<p class="text-yellow text-sm font-semibold uppercase tracking-widest mb-5">palmerston north</p>
+			<p class="text-yellow text-sm font-semibold uppercase tracking-widest mb-5">{{AREA_LOWER}}</p>
 			<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-10">what’s going up</h2>
-			<p class="text-grey-200 text-lg md:text-xl leading-relaxed mb-10">Palmy’s growing in every direction. Kelvin Grove keeps filling up, with new homes along Rangeview Drive and through Tamakuku Terrace on Te Hirawanui Drive. Aokautere has around 1,000 homes planned, and there’s more on the way at Ashhurst and out west at Kākātangiata. We’re based here, so getting to your site is never a mission.</p>
-			<p class="local-notes-aside">Palmy’s wind turbines are visible from town for a reason. Our nets are anchored for Manawatū wind, which is saying something.</p>
+			<p class="text-grey-200 text-lg md:text-xl leading-relaxed mb-10">{{LOCAL_TEXT}}</p>
+			<p class="local-notes-aside">{{LOCAL_ASIDE}}</p>
 		</div>
 	</section>
 	<section class="local-process py-28 md:py-40 border-y border-grey-700/10">
@@ -284,16 +317,14 @@
 			<h2 class="text-3xl md:text-4xl font-inter font-semibold text-grey-50 lowercase mb-4">nearby service areas</h2>
 			<div class="w-24 h-1 bg-yellow mb-8"></div>
 			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-				<a class="area-link-card" href="/feilding-manawatu/"><h3 class="relative z-10 text-2xl font-inter font-semibold text-yellow mb-3">Feilding &amp; Manawatū</h3><p class="relative z-10 text-grey-200">Fall arrest safety nets across Feilding and the Manawatū District.</p></a>
-				<a class="area-link-card" href="/levin-horowhenua/"><h3 class="relative z-10 text-2xl font-inter font-semibold text-yellow mb-3">Levin &amp; Horowhenua</h3><p class="relative z-10 text-grey-200">Construction safety netting in Levin, Foxton, Shannon, Tokomaru and Waitārere.</p></a>
-				<a class="area-link-card" href="/tararua/"><h3 class="relative z-10 text-2xl font-inter font-semibold text-yellow mb-3">Tararua</h3><p class="relative z-10 text-grey-200">Safety net installation in Dannevirke, Pahiatua, Woodville, Eketāhuna and Norsewood.</p></a>
+{{NEARBY_CARDS}}
 			</div>
-			<a class="inline-flex mt-8 text-yellow font-semibold lowercase" href="/manawatu-whanganui/">view all Manawatū–Whanganui safety net coverage →</a>
+			<a class="inline-flex mt-8 text-yellow font-semibold lowercase" href="{{REGION_URL}}">view all {{REGION_NAME}} safety net coverage →</a>
 		</div>
 	</section>
 	<section class="final-cta py-28 md:py-40 text-center">
 		<div class="max-w-4xl mx-auto px-6">
-			<p class="text-yellow text-sm font-semibold uppercase tracking-widest mb-6">palmerston north safety net installers</p>
+			<p class="text-yellow text-sm font-semibold uppercase tracking-widest mb-6">{{AREA_LOWER}} safety net installers</p>
 			<h2 class="text-4xl md:text-6xl font-inter font-semibold mb-6">Tell us what’s coming up</h2>
 			<p class="text-grey-200 text-lg mb-9">Send the location, net area and timing. We’ll get your fall arrest nets sorted.</p>
 			<a class="site-cta site-cta-primary text-xl uppercase" href="/#contact">get a quote</a>

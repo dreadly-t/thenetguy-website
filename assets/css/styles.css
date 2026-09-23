@@ -558,6 +558,10 @@ video {
   pointer-events: none;
 }
 
+.visible {
+  visibility: visible;
+}
+
 .collapse {
   visibility: collapse;
 }
@@ -576,15 +580,6 @@ video {
 
 .inset-0 {
   inset: 0px;
-}
-
-.inset-x-0 {
-  left: 0px;
-  right: 0px;
-}
-
-.bottom-0 {
-  bottom: 0px;
 }
 
 .bottom-4 {
@@ -733,10 +728,6 @@ video {
   margin-top: 1.5rem;
 }
 
-.mt-7 {
-  margin-top: 1.75rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
@@ -767,6 +758,10 @@ video {
 
 .aspect-\[4\/3\] {
   aspect-ratio: 4/3;
+}
+
+.aspect-\[4\/5\] {
+  aspect-ratio: 4/5;
 }
 
 .h-1 {
@@ -910,6 +905,10 @@ video {
   max-width: 24rem;
 }
 
+.max-w-xl {
+  max-width: 36rem;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -982,6 +981,10 @@ video {
 
 .gap-12 {
   gap: 3rem;
+}
+
+.gap-16 {
+  gap: 4rem;
 }
 
 .gap-2 {
@@ -1234,11 +1237,6 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.via-navy-900\/20 {
-  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), color-mix(in srgb, var(--navy-900) calc(0.2 * 100%), transparent) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-
 .via-navy-900\/80 {
   --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), color-mix(in srgb, var(--navy-900) calc(0.8 * 100%), transparent) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -1308,11 +1306,6 @@ video {
   padding: 2rem;
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1331,6 +1324,16 @@ video {
 .py-14 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .py-24 {
@@ -1511,8 +1514,8 @@ video {
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
 
-.leading-\[0\.92\] {
-  line-height: 0.92;
+.leading-\[0\.95\] {
+  line-height: 0.95;
 }
 
 .leading-\[0\.9\] {
@@ -1762,6 +1765,14 @@ body {
   background-color: var(--navy-900);
   color: var(--grey-50);
   font-family: 'Inter', sans-serif;
+}
+
+/* Spread heading lines evenly so no word is left alone on the last line. */
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 .brand-wordmark {
@@ -2295,6 +2306,23 @@ body.site-mobile-menu-open {
   background-size: 40px 40px;
 }
 
+/* Area page hero: fills the screen, leaving a header-height strip at the bottom
+   so the next section just peeks in. 7rem = header (3.5rem) + peek (3.5rem). */
+
+.area-hero {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 7rem);
+  min-height: calc(100svh - 7rem);
+}
+
+.area-hero-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* Shared editorial treatment for service and local SEO pages. */
 
 .seo-page-hero {
@@ -2304,59 +2332,6 @@ body.site-mobile-menu-open {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.seo-page-hero.hero-palmerston {
-  background-image: -webkit-image-set(
-		url("../images/residential/residential1-1600.avif") type("image/avif"),
-		url("../images/residential/residential1-1600.webp") type("image/webp"),
-		url("../images/residential/residential1-1600.jpg") type("image/jpeg")
-	);
-  background-image: image-set(
-		url("../images/residential/residential1-1600.avif") type("image/avif"),
-		url("../images/residential/residential1-1600.webp") type("image/webp"),
-		url("../images/residential/residential1-1600.jpg") type("image/jpeg")
-	);
-}
-
-.seo-page-hero.hero-feilding {
-  background-image: -webkit-image-set(
-		url("../images/residential/residential4-1600.avif") type("image/avif"),
-		url("../images/residential/residential4-1600.webp") type("image/webp"),
-		url("../images/residential/residential4-1600.jpg") type("image/jpeg")
-	);
-  background-image: image-set(
-		url("../images/residential/residential4-1600.avif") type("image/avif"),
-		url("../images/residential/residential4-1600.webp") type("image/webp"),
-		url("../images/residential/residential4-1600.jpg") type("image/jpeg")
-	);
-}
-
-.seo-page-hero.hero-levin {
-  background-image: -webkit-image-set(
-		url("../images/residential/residential2-1600.avif") type("image/avif"),
-		url("../images/residential/residential2-1600.webp") type("image/webp"),
-		url("../images/residential/residential2-1600.jpg") type("image/jpeg")
-	);
-  background-image: image-set(
-		url("../images/residential/residential2-1600.avif") type("image/avif"),
-		url("../images/residential/residential2-1600.webp") type("image/webp"),
-		url("../images/residential/residential2-1600.jpg") type("image/jpeg")
-	);
-  background-position: center 42%;
-}
-
-.seo-page-hero.hero-tararua {
-  background-image: -webkit-image-set(
-		url("../images/commercial/commercial1-1600.avif") type("image/avif"),
-		url("../images/commercial/commercial1-1600.webp") type("image/webp"),
-		url("../images/commercial/commercial1-1600.jpg") type("image/jpeg")
-	);
-  background-image: image-set(
-		url("../images/commercial/commercial1-1600.avif") type("image/avif"),
-		url("../images/commercial/commercial1-1600.webp") type("image/webp"),
-		url("../images/commercial/commercial1-1600.jpg") type("image/jpeg")
-	);
 }
 
 .seo-page-hero.hero-residential {
@@ -2476,6 +2451,103 @@ body.site-mobile-menu-open {
   flex: none;
 }
 
+/* At-a-glance stats row straight after the area page hero. */
+
+.glance-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.glance-item {
+  border-top: 1px solid color-mix(in srgb, var(--yellow) 40%, transparent);
+  padding-top: 1.5rem;
+}
+
+.glance-value {
+  margin-bottom: 0.5rem;
+  color: var(--yellow);
+  font-family: "Golos Text", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.glance-label {
+  max-width: 19rem;
+  margin: 0 auto;
+  text-wrap: balance;
+  color: var(--grey-200);
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .glance-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* "Around {town}" section: the light-hearted closing line under the local notes. */
+
+.local-notes-aside {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--yellow) 40%, transparent);
+  color: var(--yellow);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+/* Numbered steps on area pages. */
+
+.process-steps {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.process-step {
+  border-top: 1px solid color-mix(in srgb, var(--yellow) 40%, transparent);
+  padding-top: 1.75rem;
+}
+
+.process-step-number {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--yellow);
+  font-family: "Golos Text", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.process-step-title {
+  margin-bottom: 0.75rem;
+  color: var(--grey-50);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.process-step-text {
+  color: var(--grey-200);
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .process-steps {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+}
+
 .service-image-card {
   position: relative;
   display: block;
@@ -2488,6 +2560,28 @@ body.site-mobile-menu-open {
 
 .service-image-card img {
   transition: transform 0.6s ease;
+}
+
+/* Card text block: sits at the bottom of the photo on its own dark gradient,
+   which fades out a little above the text so it stays readable at any card size. */
+
+.service-image-card__text {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 5rem 1.5rem 1.5rem;
+  background: linear-gradient(
+		to top,
+		color-mix(in srgb, var(--navy-950) 95%, transparent) 0%,
+		color-mix(in srgb, var(--navy-950) 85%, transparent) 55%,
+		transparent 100%
+	);
+}
+
+@media (min-width: 768px) {
+  .service-image-card__text {
+    padding: 6rem 2rem 2rem;
+  }
 }
 
 .service-image-card:hover {
@@ -2807,8 +2901,55 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+/* Back-to-top arrow: follows the screen bottom right, appears once you scroll past the first screen. */
+
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.75rem);
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Same hover as the other yellow buttons: a small lift and a touch brighter. */
+
+.back-to-top.is-visible:hover {
+  filter: brightness(1.1);
+  transform: translateY(-0.2rem);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .back-to-top {
+    right: 2rem;
+    bottom: 2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide,
+  .back-to-top,
+	.hero-slide,
 	.hero-dot,
 	.site-cta,
 	.service-image-card,
@@ -3023,6 +3164,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 3rem;
   }
 
+  .md\:mb-20 {
+    margin-bottom: 5rem;
+  }
+
   .md\:mt-20 {
     margin-top: 5rem;
   }
@@ -3075,14 +3220,14 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 2rem;
   }
 
-  .md\:px-14 {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
-
   .md\:py-12 {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   .md\:py-32 {
@@ -3093,11 +3238,6 @@ input[type=number]::-webkit-outer-spin-button {
   .md\:py-40 {
     padding-top: 10rem;
     padding-bottom: 10rem;
-  }
-
-  .md\:py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
   }
 
   .md\:py-\[4\.5rem\] {
@@ -3198,6 +3338,10 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
   }
 
+  .lg\:aspect-\[4\/3\] {
+    aspect-ratio: 4/3;
+  }
+
   .lg\:min-h-\[calc\(100vh-7rem\)\] {
     min-height: calc(100vh - 7rem);
   }
@@ -3256,6 +3400,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .lg\:gap-16 {
     gap: 4rem;
+  }
+
+  .lg\:gap-24 {
+    gap: 6rem;
   }
 
   .lg\:py-16 {

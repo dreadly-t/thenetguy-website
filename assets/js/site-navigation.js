@@ -305,3 +305,29 @@ document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 		});
 	});
 })();
+
+// Back-to-top arrow: shows once the first screen has scrolled away, then scrolls smoothly to the top.
+(() => {
+	const button = document.querySelector('[data-back-to-top]');
+	if (!button) return;
+
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	let frame = null;
+
+	const update = () => {
+		frame = null;
+		button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.8);
+	};
+
+	window.addEventListener('scroll', () => {
+		if (frame === null) frame = window.requestAnimationFrame(update);
+	}, { passive: true });
+	update();
+
+	button.addEventListener('click', (event) => {
+		event.preventDefault();
+		window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+		// Send keyboard focus back to the top too, without jumping the scroll.
+		document.getElementById('main-content')?.focus({ preventScroll: true });
+	});
+})();

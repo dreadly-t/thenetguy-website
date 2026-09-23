@@ -1,5 +1,5 @@
-// Copies the shared header and footer from index.html into every other page.
-// index.html is the source of truth: edit the header/footer there, then run `npm run sync`
+// Copies the shared header, footer and back-to-top button from index.html into every other page.
+// index.html is the source of truth: edit them there, then run `npm run sync`
 // (or `npm run build`, which runs this first).
 const fs = require('fs');
 const path = require('path');
@@ -12,6 +12,8 @@ const blocks = [
 	{ name: 'skip link', pattern: /<a class="skip-link"[\s\S]*?<\/a>/ },
 	{ name: 'header', pattern: /<nav class="site-header"[\s\S]*?<\/nav>/ },
 	{ name: 'footer', pattern: /<footer\b[\s\S]*?<\/footer>/ },
+	// Added straight after the footer on pages that don't have it yet.
+	{ name: 'back-to-top button', pattern: /<a class="back-to-top"[\s\S]*?<\/a>/, insertAfter: /<\/footer>/ },
 ];
 
 // Every page is a folder with an index.html, e.g. faq/index.html.
@@ -45,6 +47,13 @@ for (const page of pages) {
 
 	for (const block of sourceBlocks) {
 		const match = html.match(block.pattern);
+		if (!match && block.insertAfter) {
+			const anchor = html.match(block.insertAfter);
+			if (!anchor) throw new Error(`${page}: nowhere to add the ${block.name}`);
+			const at = anchor.index + anchor[0].length;
+			html = `${html.slice(0, at)}\n${block.html}${html.slice(at)}`;
+			continue;
+		}
 		if (!match) throw new Error(`${page}: could not find the ${block.name}`);
 		const updated = reindent(block.html, block.indent, indentBefore(html, match.index));
 		html = html.slice(0, match.index) + updated + html.slice(match.index + match[0].length);
@@ -57,4 +66,4 @@ for (const page of pages) {
 	}
 }
 
-console.log(`Header and footer synced from ${source}: ${changed} of ${pages.length} pages updated.`);
+console.log(`Shared layout synced from ${source}: ${changed} of ${pages.length} pages updated.`);
