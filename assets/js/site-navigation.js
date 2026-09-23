@@ -277,3 +277,31 @@
 	setHeaderState();
 	updateCurrentSection();
 })();
+
+// Icons are decorative; hide them from screen readers on every page.
+document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
+	icon.setAttribute('aria-hidden', 'true');
+});
+
+// From other pages, links to a home-page section (e.g. /#contact) open the home page with a clean URL.
+// The home page reads the stored target and scrolls to it.
+(() => {
+	if (window.location.pathname === '/' || window.location.pathname === '/index.html') return;
+
+	document.querySelectorAll('a[href^="/#"]').forEach((link) => {
+		link.addEventListener('click', (event) => {
+			if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+			const target = new URL(link.href).hash.slice(1);
+			if (!target) return;
+
+			try {
+				sessionStorage.setItem('theNetGuyScrollTarget', target);
+				event.preventDefault();
+				window.location.assign('/');
+			} catch (error) {
+				// Keep the direct hash link as the fallback when storage is unavailable.
+			}
+		});
+	});
+})();

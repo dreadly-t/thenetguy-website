@@ -2,8 +2,8 @@
 const colour = (name) => `color-mix(in srgb, var(--${name}) calc(<alpha-value> * 100%), transparent)`;
 
 module.exports = {
-	content: ['./**/*.html'],
-	darkMode: 'class',
+	// Every page, plus scripts that add classes.
+	content: ['./index.html', './*/index.html', './assets/js/**/*.js', '!./node_modules/**'],
 	theme: {
 		extend: {
 			// Colour values live in assets/css/source.css (:root). Edit them there.
@@ -29,24 +29,9 @@ module.exports = {
 					700: colour('grey-700'),
 				},
 			},
-			borderRadius: {
-				DEFAULT: '0.25rem',
-				lg: '0.25rem',
-				xl: '0.5rem',
-				full: '0.75rem',
-			},
 			fontFamily: {
-				body: ['Inter', 'sans-serif'],
-				display: ['Golos Text', 'sans-serif'],
-				headline: ['Inter', 'sans-serif'],
-			},
-			fontWeight: {
-				normal: '400',
-				medium: '500',
-				semibold: '600',
-				bold: '600',
-				extrabold: '600',
-				black: '600',
+				inter: ['Inter', 'sans-serif'],
+				golos: ['Golos Text', 'sans-serif'], // "the net guy" wordmark and big headings
 			},
 		},
 	},

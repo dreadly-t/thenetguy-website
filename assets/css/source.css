@@ -166,7 +166,6 @@ body {
 	min-height: 2.75rem;
 	padding: 0 0.68rem;
 	color: var(--grey-50);
-	font-family: Inter, sans-serif;
 	font-size: 0.875rem;
 	font-weight: 600;
 	letter-spacing: 0.1em;
@@ -273,10 +272,11 @@ body {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	min-width: 4.2rem;
 	min-height: 2.75rem;
+	padding: 0.7rem 0.8rem;
 	background: var(--yellow);
 	color: var(--yellow-ink);
-	font-family: Inter, sans-serif;
 	font-size: 0.7rem;
 	font-weight: 700;
 	letter-spacing: 0.1em;
@@ -296,12 +296,6 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 0.55rem;
-}
-
-.site-header__mobile-quote {
-	min-width: 4.2rem;
-	min-height: 2.75rem;
-	padding: 0.7rem 0.8rem;
 }
 
 .site-menu-toggle {
@@ -392,7 +386,6 @@ body {
 	min-height: 3.5rem;
 	border-bottom: 1px solid color-mix(in srgb, var(--grey-700) 55%, transparent);
 	color: var(--grey-50);
-	font-family: Inter, sans-serif;
 	font-size: 1.2rem;
 	font-weight: 600;
 	line-height: 1.1;
@@ -501,21 +494,6 @@ body {
 
 body.site-mobile-menu-open {
 	overflow: hidden;
-}
-
-footer a[href='/residential-safety-net-installation/'],
-footer a[href='/commercial-safety-net-installation/'],
-footer a[href='/manawatu-whanganui/'],
-footer a[href='/palmerston-north/'],
-footer a[href='/feilding-manawatu/'],
-footer a[href='/levin-horowhenua/'],
-footer a[href='/tararua/'],
-footer a[href='/wellington/'] {
-	text-transform: capitalize;
-}
-
-footer a[href='/faq/'] {
-	text-transform: uppercase;
 }
 
 .footer-accreditations {
@@ -718,11 +696,9 @@ footer a[href='/faq/'] {
 	justify-content: center;
 	min-height: 3.75rem;
 	padding: 0.95rem 2rem;
-	font-family: Inter, sans-serif;
 	font-size: 1.05rem;
 	font-weight: 600;
 	letter-spacing: 0.025em;
-	text-transform: uppercase;
 	transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
 }
 
@@ -742,12 +718,6 @@ footer a[href='/faq/'] {
 	background: var(--yellow);
 	box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.28);
 	color: var(--yellow-ink);
-}
-
-a.bg-yellow.text-yellow-ink:not([data-analytics-source='estimator']),
-button.bg-yellow.text-yellow-ink,
-.site-cta-primary {
-	text-transform: uppercase;
 }
 
 .site-cta-secondary {
