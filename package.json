@@ -1,0 +1,11 @@
+{
+	"name": "thenetguy-website",
+	"private": true,
+	"scripts": {
+		"build": "tailwindcss -i assets/css/source.css -o assets/css/styles.css",
+		"watch": "tailwindcss -i assets/css/source.css -o assets/css/styles.css --watch"
+	},
+	"devDependencies": {
+		"tailwindcss": "3.4.17"
+	}
+}
