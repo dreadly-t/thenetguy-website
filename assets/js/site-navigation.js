@@ -283,7 +283,7 @@ document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 	icon.setAttribute('aria-hidden', 'true');
 });
 
-// From other pages, links to a home-page section (e.g. /#contact) open the home page with a clean URL.
+// From other pages, links to a home-page section (e.g. /#estimator) open the home page with a clean URL.
 // The home page reads the stored target and scrolls to it.
 (() => {
 	if (window.location.pathname === '/' || window.location.pathname === '/index.html') return;
@@ -294,6 +294,8 @@ document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 
 			const target = new URL(link.href).hash.slice(1);
 			if (!target) return;
+			// Contact and pricing links open their pop-up panel instead (below).
+			if (document.querySelector(`[data-${target}-panel]`)) return;
 
 			try {
 				sessionStorage.setItem('theNetGuyScrollTarget', target);
@@ -302,6 +304,95 @@ document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 			} catch (error) {
 				// Keep the direct hash link as the fallback when storage is unavailable.
 			}
+		});
+	});
+})();
+
+// Pop-up panels: the quote form slides up from the bottom, the price estimator drops down from the top
+// (the direction is set in the CSS). Only pages other than home have them (npm run sync adds them);
+// on home, these links scroll to the section instead (home.js).
+(() => {
+	const panels = [
+		{ name: 'contact', panel: document.querySelector('[data-contact-panel]'), links: '[data-contact-open], a[href="/#contact"]' },
+		{ name: 'estimator', panel: document.querySelector('[data-estimator-panel]'), links: 'a[href="/#estimator"]' },
+	].filter(({ panel }) => panel && typeof panel.showModal === 'function');
+	if (!panels.length) return;
+
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const contactButton = document.querySelector('[data-contact-open]');
+	const openers = new Map();
+
+	const closePanel = (panel) => {
+		if (!panel.open || !panel.classList.contains('is-open')) return;
+		panel.classList.remove('is-open');
+		const finish = () => {
+			panel.close();
+			// "Enquire now" in the estimator opens the contact panel as this one leaves.
+			if (panels.some((other) => other.panel.open)) return;
+			document.body.classList.remove('popup-panel-open');
+			openers.get(panel)?.focus({ preventScroll: true });
+		};
+		if (reducedMotion) {
+			finish();
+			return;
+		}
+		// Close once the slide ends (with a fallback in case the transition doesn't run).
+		let fallback = null;
+		const onEnd = (event) => {
+			if (event.target === panel) done();
+		};
+		const done = () => {
+			window.clearTimeout(fallback);
+			panel.removeEventListener('transitionend', onEnd);
+			finish();
+		};
+		fallback = window.setTimeout(done, 600);
+		panel.addEventListener('transitionend', onEnd);
+	};
+
+	const openPanel = ({ name, panel }, link) => {
+		if (panel.open) return;
+		// Opened from inside another panel: close that one, and hand focus back to what opened it.
+		const fromPanel = link.closest('dialog');
+		openers.set(panel, fromPanel ? openers.get(fromPanel) : link);
+		panels.forEach((other) => closePanel(other.panel));
+		panel.showModal();
+		panel.scrollTop = 0;
+		document.body.classList.add('popup-panel-open');
+		// Wait a frame so the panel starts off screen, then slide it in.
+		window.requestAnimationFrame(() => {
+			window.requestAnimationFrame(() => panel.classList.add('is-open'));
+		});
+		if (typeof window.trackAnalyticsEvent === 'function') {
+			window.trackAnalyticsEvent(`${name}_panel_open`, {
+				[`${name}_source`]: link.dataset.analyticsSource || (link === contactButton ? 'contact_button' : 'page_link'),
+			});
+		}
+	};
+
+	panels.forEach((entry) => {
+		const { panel, links } = entry;
+
+		document.querySelectorAll(links).forEach((link) => {
+			link.addEventListener('click', (event) => {
+				if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+				event.preventDefault();
+				// Let the mobile menu close first (the header code above handles that on the same click).
+				window.requestAnimationFrame(() => openPanel(entry, link));
+			});
+		});
+
+		panel.querySelector('[data-panel-close]')?.addEventListener('click', () => closePanel(panel));
+
+		// Clicks on the dark area outside the panel land on the dialog itself.
+		panel.addEventListener('click', (event) => {
+			if (event.target === panel) closePanel(panel);
+		});
+
+		// Escape: slide away instead of vanishing.
+		panel.addEventListener('cancel', (event) => {
+			event.preventDefault();
+			closePanel(panel);
 		});
 	});
 })();
@@ -329,5 +420,43 @@ document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
 		window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
 		// Send keyboard focus back to the top too, without jumping the scroll.
 		document.getElementById('main-content')?.focus({ preventScroll: true });
+	});
+})();
+
+// Count-up numbers: any element with data-count-to="1000" counts up from 0 the first time it scrolls into view.
+// Optional data-count-prefix="~" / data-count-suffix="%" keep a symbol before or after the number while it counts.
+// The real number stays in the HTML, so search engines and no-JS visitors still see it.
+(() => {
+	const numbers = Array.from(document.querySelectorAll('[data-count-to]'));
+	if (!numbers.length || !('IntersectionObserver' in window)) return;
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+	const duration = 1600;
+	const format = (element, value) => `${element.dataset.countPrefix || ''}${value.toLocaleString('en-NZ')}${element.dataset.countSuffix || ''}`;
+	const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+	const run = (element) => {
+		const target = Number(element.dataset.countTo);
+		const start = performance.now();
+		const step = (now) => {
+			const progress = Math.min((now - start) / duration, 1);
+			element.textContent = format(element, Math.round(target * easeOut(progress)));
+			if (progress < 1) window.requestAnimationFrame(step);
+		};
+		window.requestAnimationFrame(step);
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (!entry.isIntersecting) return;
+			observer.unobserve(entry.target);
+			run(entry.target);
+		});
+	}, { threshold: 0.6 });
+
+	numbers.forEach((element) => {
+		// Only reset numbers that are still below the screen, so nothing visible flickers to 0.
+		if (element.getBoundingClientRect().top > window.innerHeight) element.textContent = format(element, 0);
+		observer.observe(element);
 	});
 })();

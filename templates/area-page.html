@@ -32,13 +32,29 @@
 	                     				{"@type": "Place", "name": "Petone, New Zealand"}
 	{{HERO_LEDE}}        One sentence, ~15–20 words. Keep "fall arrest" and "fall protection" in it.
 	{{LEAD_TIME_VALUE}}  First stat, e.g. 1–3 days  (Wellington: check what lead time you quote there)
-	{{LEAD_TIME_LABEL}}  e.g. lead time across <span class="whitespace-nowrap">Manawatū–Whanganui</span>
+	{{LEAD_TIME_LABEL}}  e.g. Lead time across <span class="whitespace-nowrap">Manawatū–Whanganui</span>
 	{{INSTALL_TEXT}}     "Where we install" paragraph, ~30–40 words, opening with "Fall arrest safety nets for…"
-	{{LOCAL_TEXT}}       "Around {town}" paragraph, ~50–70 words. MUST be genuinely local: real streets,
-	                     subdivisions or growth areas you work in, how far it is from Palmy. This is what
-	                     keeps Google from treating the page as a copy of the others. No filler.
-	{{LOCAL_ASIDE}}      One friendly, dry line about the place. Affectionate, never a dig at the locals.
-	                     e.g. Palmy’s wind turbines are visible from town for a reason. Our nets are anchored for Manawatū wind, which is saying something.
+	{{LOCAL_TEXT}}       "What's going up" paragraph, 2–3 short sentences. Genuinely local, in plain words,
+	                     e.g. how far it is from Palmy and which towns are covered. The detail goes in the figures.
+	{{LOCAL_ASIDE}}      One friendly, dry line about the place (shown as a pull quote). Affectionate, never a
+	                     dig at the locals. e.g. Palmy’s wind turbines are visible from town for a reason.
+	                     Our nets are anchored for Manawatū wind, which is saying something.
+	{{GROWTH_ITEMS}}     Three growth figures. Each one is a block like:
+	                     				<div class="growth-item">
+	                     					<p class="growth-value" data-count-to="3500">3,500</p>
+	                     					<p class="growth-label">Homes planned at <span class="whitespace-nowrap">Tara-Ika</span>, on Levin’s east side</p>
+	                     				</div>
+	                     - Figures MUST come from council or other official documents. Open the document and
+	                       check the page the number is on. No rounding up, and say "planned", "forecast" or
+	                       "long term" where that's what the document says.
+	                     - data-count-to makes the number count up when scrolled into view; its value must match
+	                       the visible number. Add data-count-suffix="%" for a short unit; put longer units in the label ("Minutes from…"). Leave it off
+	                       for words ("Now"), years ("2029") and decimals, which stay still.
+	                     - A "Now" item naming real streets with new builds is a good first figure.
+	                     - If a council strategy can't be found, verifiable infrastructure facts (e.g. travel
+	                       time on a new highway) are the fallback.
+	{{GROWTH_SOURCE}}    Credit line under the figures, links open in a new tab, e.g.
+	                     Figures from the <a href="…council-document.pdf#page=49" target="_blank" rel="noopener">Tararua District Council Urban Growth Strategy</a> · <a class="whitespace-nowrap" href="…council-page" target="_blank" rel="noopener">Find out more</a>
 	{{TOWN_LIST}}        Towns covered, e.g. <span>Lower Hutt</span><span>Petone</span><span>Wainuiomata</span>
 	{{PHOTO_SRC}}        /assets/images/residential/residential3-1200.jpg  (also used for the social share image)
 	{{PHOTO_SRCSET}}     /assets/images/residential/residential3-768.jpg 768w, /assets/images/residential/residential3-1200.jpg 1200w
@@ -48,7 +64,7 @@
 	{{NEARBY_CARDS}}     Three neighbouring area cards, one per line, e.g.
 	                     <a class="area-link-card" href="/porirua/"><h3 class="relative z-10 text-2xl font-inter font-semibold text-yellow mb-3">Porirua</h3><p class="relative z-10 text-grey-200">Safety net installation in Porirua, …</p></a>
 
-	The shared styles for this layout (.area-hero, .glance-*, .local-notes-aside, .process-*, .showcase-image,
+	The shared styles for this layout (.area-hero, .glance-*, .growth-*, .process-*, .showcase-image,
 	.service-image-card__text, .final-cta) live in assets/css/source.css.
 -->
 <html lang="en">
@@ -246,11 +262,11 @@
 				</div>
 				<div class="glance-item">
 					<p class="glance-value">Reliable</p>
-					<p class="glance-label">we answer the phone and turn up when we say we will</p>
+					<p class="glance-label">We answer the phone and turn up when we say we will</p>
 				</div>
 				<div class="glance-item">
 					<p class="glance-value">Local</p>
-					<p class="glance-label">owner-operated from Palmerston North, so you deal directly with Tarn</p>
+					<p class="glance-label">Owner-operated from Palmerston North, so you deal directly with Tarn</p>
 				</div>
 			</div>
 		</div>
@@ -268,19 +284,25 @@
 			</div>
 		</div>
 	</section>
-	<section class="local-notes py-28 md:py-40 bg-navy-850 text-center">
-		<div class="max-w-3xl mx-auto px-6">
-			<p class="text-yellow text-sm font-semibold uppercase tracking-widest mb-5">{{AREA_LOWER}}</p>
-			<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-10">what’s going up</h2>
-			<p class="text-grey-200 text-lg md:text-xl leading-relaxed mb-10">{{LOCAL_TEXT}}</p>
-			<p class="local-notes-aside">{{LOCAL_ASIDE}}</p>
+	<section class="local-notes py-28 md:py-40 bg-navy-850">
+		<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+			<div>
+				<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4">what’s going up</h2>
+				<div class="w-24 h-1 bg-yellow mb-10"></div>
+				<p class="text-grey-200 text-lg leading-relaxed max-w-xl mb-10">{{LOCAL_TEXT}}</p>
+				<p class="growth-aside">{{LOCAL_ASIDE}}</p>
+			</div>
+			<div class="growth-grid">
+{{GROWTH_ITEMS}}
+				<p class="growth-source">{{GROWTH_SOURCE}}</p>
+			</div>
 		</div>
 	</section>
 	<section class="local-process py-28 md:py-40 border-y border-grey-700/10">
 		<div class="max-w-7xl mx-auto px-6">
-			<div class="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+			<div class="max-w-2xl mb-16 md:mb-20">
 				<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4">how it works</h2>
-				<div class="w-24 h-1 bg-yellow mx-auto mb-10"></div>
+				<div class="w-24 h-1 bg-yellow mb-10"></div>
 				<p class="text-grey-200 text-lg leading-relaxed">Send the location, approximate net area, build type and timing. We’ll confirm the site suits a fall arrest net system and line the work up with your programme.</p>
 			</div>
 			<ol class="process-steps">
@@ -290,7 +312,7 @@
 				<li class="process-step"><span class="process-step-number">04</span><h3 class="process-step-title">handover</h3><p class="process-step-text">Provide installation checks and details for the site file.</p></li>
 				<li class="process-step"><span class="process-step-number">05</span><h3 class="process-step-title">remove</h3><p class="process-step-text">Plan removal once the protected work is finished.</p></li>
 			</ol>
-			<div class="text-center mt-16 md:mt-20">
+			<div class="mt-16 md:mt-20">
 				<p class="text-grey-300 text-sm uppercase tracking-widest mb-6">WorkSafe-aligned · FASET-certified · BS EN 1263</p>
 				<a class="text-yellow font-semibold text-xl lowercase inline-flex items-center gap-3 hover:gap-5 transition-all" href="/#contact">get a quote <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
 			</div>
@@ -380,6 +402,8 @@
 	<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
 </a>
 <script src="/assets/js/site-analytics.js"></script>
+<script src="/assets/js/estimator.js"></script>
+<script src="/assets/js/contact.js"></script>
 <script src="/assets/js/site-navigation.js"></script>
 </body>
 </html>

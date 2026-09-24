@@ -575,7 +575,7 @@
 	<section class="py-24 bg-navy-900" id="estimator">
 		<div class="max-w-7xl mx-auto px-6">
 		<div class="mb-4">
-			<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4">
+			<h2 class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4" id="estimator-title">
 			pricing estimator
 			</h2>
 			<div class="w-24 h-1 bg-yellow"></div>
@@ -650,7 +650,7 @@
 				</p>
 				<ul class="text-xs text-grey-200 leading-relaxed">
 					<li><br></li>
-					<li>Installation: $5.00m²</li>
+					<li>Installation: $4.00m²</li>
 					<li>Weekly hire: 10% of the installation </li>
 				</ul>
 			</div>
@@ -666,7 +666,7 @@
 				<span
 					class="text-grey-50 font-semibold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
 					id="resInstall">
-					$500.00
+					$400.00
 				</span>
 				</div>
 
@@ -676,7 +676,7 @@
 				<span
 					class="text-grey-50 font-semibold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
 					id="resHire">
-					$150.00
+					$120.00
 				</span>
 				</div>
 
@@ -686,7 +686,7 @@
 				<span
 					class="text-grey-50 font-semibold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
 					id="resGST">
-					$97.50
+					$78.00
 				</span>
 				</div>
 			</div>
@@ -699,7 +699,7 @@
 				<h3
 					class="text-4xl md:text-6xl font-inter font-semibold text-yellow tabular-nums min-w-[8ch] sm:min-w-[10ch]"
 					id="resGrandTotal">
-					$747.50
+					$598.00
 				</h3>
 				<p class="text-xs text-grey-500 leading-relaxed sm:max-w-md sm:ml-auto mt-2 normal-case">
 				*Estimate only. Final quote confirmed after reviewing plans or site details.
@@ -709,7 +709,7 @@
 				<a
 					class="flex w-fit ml-auto items-center justify-center gap-3 bg-yellow text-yellow-ink px-4 sm:px-6 py-4 font-inter font-semibold text-sm sm:text-base md:text-lg normal-case text-center shadow-xl transition-all hover:-translate-y-0.5 hover:brightness-110"
 					data-analytics-source="estimator"
-					href="#contact">
+					href="/#contact">
 					Enquire now
 					<span class="material-symbols-outlined text-xl shrink-0" aria-hidden="true">arrow_forward</span>
 				</a>
@@ -724,7 +724,8 @@
 		<div class="grid lg:grid-cols-2 gap-20">
 			<div>
 			<h2
-				class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4">
+				class="text-4xl md:text-5xl font-inter font-semibold text-grey-50 lowercase mb-4"
+				id="contact-title">
 				get a quote
 			</h2>
 			<div class="w-24 h-1 bg-yellow"></div>
@@ -971,8 +972,11 @@
 <a class="back-to-top" href="#top" aria-label="Back to top" data-back-to-top>
 	<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
 </a>
+<a class="contact-button uppercase" href="/#contact" data-contact-open>contact us</a>
 	<script src="/assets/js/site-analytics.js"></script>
 	<script src="/assets/js/home.js"></script>
+	<script src="/assets/js/estimator.js"></script>
+	<script src="/assets/js/contact.js"></script>
 	<script src="/assets/js/site-navigation.js"></script>
 	</body>
 </html>

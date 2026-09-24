@@ -1639,6 +1639,14 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2486,18 +2494,110 @@ body.site-mobile-menu-open {
   }
 }
 
-/* "Around {town}" section: the light-hearted closing line under the local notes. */
+/* "What's going up" scoreboard: local growth figures beside the section text.
+   Numbers with data-count-to count up when scrolled into view (site-navigation.js). */
 
-.local-notes-aside {
-  max-width: 36rem;
-  margin: 0 auto;
-  padding-top: 2rem;
+.growth-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.growth-item {
   border-top: 1px solid color-mix(in srgb, var(--yellow) 40%, transparent);
+  padding-top: 2rem;
+}
+
+.growth-value {
+  margin-bottom: 1rem;
   color: var(--yellow);
+  font-family: "Golos Text", sans-serif;
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.growth-label {
+  max-width: 17rem;
+  color: var(--grey-200);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+/* Three across on tablets (section is one column there), back to a stacked list beside the text on desktop. */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .growth-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* Desktop: each figure becomes a row, number on the left and its label beside it. */
+
+@media (min-width: 1024px) {
+  .growth-grid {
+    gap: 0;
+  }
+
+  .growth-item {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2rem 0;
+  }
+
+  .growth-item:last-of-type {
+    border-bottom: 1px solid color-mix(in srgb, var(--yellow) 40%, transparent);
+  }
+
+  .growth-value {
+    margin-bottom: 0;
+  }
+
+  .growth-label {
+    max-width: 22rem;
+  }
+
+  .growth-source {
+    padding-top: 1.5rem;
+  }
+}
+
+/* Small source note under the growth figures. Spans the full width of the stats grid. */
+
+.growth-source {
+  grid-column: 1 / -1;
+  color: var(--grey-500);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+.growth-source a {
+  color: var(--grey-300);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.growth-source a:hover,
+.growth-source a:focus-visible {
+  color: var(--yellow);
+}
+
+/* Light-hearted one-liner in the "what's going up" section, set as a pull quote. */
+
+.growth-aside {
+  max-width: 32rem;
+  border-left: 4px solid var(--yellow);
+  padding-left: 1.5rem;
+  color: var(--grey-50);
   font-size: 1.125rem;
   font-style: italic;
   line-height: 1.6;
-  text-wrap: balance;
 }
 
 /* Numbered steps on area pages. */
@@ -2947,8 +3047,263 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+/* CONTACT US button: bottom centre, shows with the back-to-top arrow. */
+
+.contact-button {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0 1.5rem;
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 150%);
+  transition: opacity 0.3s ease, transform 0.35s ease, filter 0.2s ease;
+}
+
+.contact-button.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.contact-button.is-visible:hover {
+  filter: brightness(1.1);
+  transform: translate(-50%, -0.2rem);
+}
+
+.contact-button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .contact-button {
+    bottom: 2rem;
+  }
+}
+
+/* Pop-up panels: a home page section floating over the page, with the same gap above and below
+   (--popup-panel-gap). The contact panel slides up from the bottom, the estimator panel drops down from the top. */
+
+.popup-panel {
+  --popup-panel-gap: 1.5rem;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 80rem;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: calc(100dvh - 2 * var(--popup-panel-gap));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: var(--navy-950);
+  color: var(--grey-50);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.75);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Starts just below the bottom of the screen. */
+
+.contact-panel {
+  transform: translateY(calc(50vh + 50%));
+}
+
+/* Starts just above the top of the screen. */
+
+.estimator-panel {
+  transform: translateY(calc(-50vh - 50%));
+}
+
+.popup-panel.is-open {
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .popup-panel {
+    --popup-panel-gap: 3rem;
+  }
+}
+
+/* The dimmed page behind the panel: dark enough to focus the panel, light enough to see the page is still there.
+   navy-950 written out, as older browsers can't read colour variables here. */
+
+.popup-panel::backdrop {
+  background: rgba(0, 14, 34, 0);
+  transition: background-color 0.45s ease;
+}
+
+.popup-panel.is-open::backdrop {
+  background: rgba(0, 14, 34, 0.85);
+}
+
+/* Stays in the top corner while the panel scrolls, without pushing the section down. */
+
+.popup-panel__close {
+  position: sticky;
+  top: 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem 1rem -4rem auto;
+  background: var(--yellow);
+  color: var(--yellow-ink);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.popup-panel__close:hover {
+  filter: brightness(1.1);
+  transform: translateY(-0.2rem);
+}
+
+.popup-panel__close:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+/* The quote section, scaled down to suit the pop-up. Only applies inside the panel;
+   the home page keeps its full-size section. */
+
+.contact-panel > section > div {
+  padding: 3rem 1.5rem 2.5rem;
+}
+
+.contact-panel > section > div > div {
+  gap: 2.5rem;
+}
+
+.contact-panel h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.contact-panel div:has(> form) {
+  padding: 1.5rem;
+}
+
+.contact-panel form > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.contact-panel form > div {
+  gap: 1rem;
+}
+
+/* The "sending / sent" message under the button takes no room until it has something to say. */
+
+.contact-panel #quoteStatus {
+  min-height: 0;
+  margin-top: 0.75rem;
+}
+
+.contact-panel form input,
+.contact-panel form textarea {
+  padding: 0.75rem 1rem;
+}
+
+.contact-panel form textarea {
+  height: 6rem;
+}
+
+.contact-panel form button[type='submit'] {
+  padding-block: 0.875rem;
+}
+
+.contact-panel form button[type='submit'] svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .contact-panel > section > div {
+    padding: 3rem;
+  }
+
+  .contact-panel div:has(> form) {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-panel > section > div > div {
+    gap: 4rem;
+  }
+}
+
+/* The estimator section, scaled down to suit the pop-up. Only applies inside the panel;
+   the home page keeps its full-size section. */
+
+.estimator-panel > section {
+  padding: 3rem 0 2.5rem;
+}
+
+.estimator-panel h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.estimator-panel .grid {
+  gap: 2rem;
+}
+
+.estimator-panel .grid > div:last-child .mt-10 {
+  margin-top: 2rem;
+}
+
+.estimator-panel #resGrandTotal {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .estimator-panel > section > div {
+    padding-inline: 3rem;
+  }
+
+  .estimator-panel .grid {
+    padding: 2rem;
+  }
+
+  .estimator-panel .grid > div:last-child {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .estimator-panel .grid {
+    gap: 4rem;
+  }
+}
+
+/* Keep the page behind still while a panel is open. */
+
+body.popup-panel-open {
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .back-to-top,
+	.contact-button,
+	.popup-panel,
+	.popup-panel::backdrop,
 	.hero-slide,
 	.hero-dot,
 	.site-cta,
