@@ -1,0 +1,9 @@
+# GitHub Pages: files kept in the repo but not published on the website.
+exclude:
+  - templates/
+  - scripts/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - assets/css/source.css
