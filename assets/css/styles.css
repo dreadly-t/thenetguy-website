@@ -586,20 +586,12 @@ video {
   bottom: 1rem;
 }
 
-.left-0 {
-  left: 0px;
-}
-
 .left-4 {
   left: 1rem;
 }
 
 .left-6 {
   left: 1.5rem;
-}
-
-.right-0 {
-  right: 0px;
 }
 
 .right-4 {
@@ -612,10 +604,6 @@ video {
 
 .top-1\/2 {
   top: 50%;
-}
-
-.top-20 {
-  top: 5rem;
 }
 
 .top-6 {
@@ -1133,10 +1121,6 @@ video {
   border-color: color-mix(in srgb, var(--grey-700) calc(0.2 * 100%), transparent);
 }
 
-.border-grey-700\/40 {
-  border-color: color-mix(in srgb, var(--grey-700) calc(0.4 * 100%), transparent);
-}
-
 .border-teal {
   --tw-border-opacity: 1;
   border-color: color-mix(in srgb, var(--teal) calc(var(--tw-border-opacity, 1) * 100%), transparent);
@@ -1611,10 +1595,6 @@ video {
 
 .opacity-5 {
   opacity: 0.05;
-}
-
-.opacity-90 {
-  opacity: 0.9;
 }
 
 .shadow-2xl {
@@ -3378,11 +3358,6 @@ body.popup-panel-open {
   gap: 1.25rem;
 }
 
-.hover\:border-yellow:hover {
-  --tw-border-opacity: 1;
-  border-color: color-mix(in srgb, var(--yellow) calc(var(--tw-border-opacity, 1) * 100%), transparent);
-}
-
 .hover\:bg-navy-500:hover {
   --tw-bg-opacity: 1;
   background-color: color-mix(in srgb, var(--navy-500) calc(var(--tw-bg-opacity, 1) * 100%), transparent);
@@ -3764,11 +3739,6 @@ body.popup-panel-open {
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  .lg\:py-44 {
-    padding-top: 11rem;
-    padding-bottom: 11rem;
   }
 
   .lg\:pb-16 {
