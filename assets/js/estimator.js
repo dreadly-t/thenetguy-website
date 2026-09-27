@@ -6,7 +6,7 @@
 	if (!inputArea || !inputWeeks) return;
 
 	// Pricing: installation per m², then weekly hire as a share of the installation (before GST).
-	const installPerM2 = 4.0;
+	const installPerM2 = 3.5;
 	const weeklyHireRate = 0.1;
 	const gstRate = 0.15;
 
