@@ -597,11 +597,18 @@
 				<label class="block text-xs font-semibold uppercase tracking-widest text-grey-500" for="inputArea">
 					Total Area (m²)
 				</label>
-				<span
-					class="text-yellow font-semibold text-xl tabular-nums text-right min-w-[7ch]"
-					id="areaDisplay">
-					100 m²
-				</span>
+				<label class="estimator-value text-yellow font-semibold text-xl tabular-nums" for="areaNumber">
+					<input
+					class="estimator-number estimator-number-area"
+					aria-label="Total area in square metres"
+					id="areaNumber"
+					inputmode="numeric"
+					maxlength="3"
+					pattern="[0-9]*"
+					type="text"
+					value="100" />
+					<span>m²</span>
+				</label>
 				</div>
 	
 				<input
@@ -623,11 +630,18 @@
 				<label class="text-xs font-semibold uppercase tracking-widest text-grey-500" for="inputWeeks">
 					Estimated Project Duration
 				</label>
-				<span
-					class="text-yellow font-semibold tabular-nums text-right min-w-[8ch]"
-					id="durationDisplay">
-					3 Weeks
-				</span>
+				<label class="estimator-value text-yellow font-semibold tabular-nums" for="weeksNumber">
+					<input
+					class="estimator-number estimator-number-weeks"
+					aria-label="Estimated project duration in weeks"
+					id="weeksNumber"
+					inputmode="numeric"
+					maxlength="2"
+					pattern="[0-9]*"
+					type="text"
+					value="3" />
+					<span id="weeksUnit">Weeks</span>
+				</label>
 				</div>
 	
 				<input
@@ -665,7 +679,7 @@
 			<div class="space-y-6">
 				<div
 				class="flex justify-between items-center border-b border-grey-700/10 pb-4 gap-4 min-w-0">
-				<span class="text-grey-200 min-w-0">Installation</span>
+				<span class="text-grey-200 min-w-0">Installation and removal</span>
 				<span
 					class="text-grey-50 font-semibold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
 					id="resInstall">
@@ -675,7 +689,7 @@
 	
 				<div
 				class="flex justify-between items-center border-b border-grey-700/10 pb-4 gap-4 min-w-0">
-				<span class="text-grey-200 min-w-0">Weekly hire total</span>
+				<span class="text-grey-200 min-w-0">Hire for <span id="hireWeeks">3 weeks</span></span>
 				<span
 					class="text-grey-50 font-semibold text-lg md:text-xl tabular-nums text-right min-w-[7ch] sm:min-w-[9ch] shrink-0"
 					id="resHire">

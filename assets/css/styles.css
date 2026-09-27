@@ -2841,6 +2841,46 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* Estimator: the typed-in figure beside each slider, with its unit after it.
+   The whole figure is a label for its box, so clicking the unit or the space around it
+   still puts the cursor in the box. */
+
+.estimator-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  padding: 0.25em 0 2px 0.5em;
+  border-bottom: 1px dashed currentColor;
+  white-space: nowrap;
+  cursor: text;
+}
+
+.estimator-value:focus-within {
+  border-bottom-style: solid;
+}
+
+.estimator-number {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: right;
+  cursor: text;
+}
+
+.estimator-number:focus {
+  outline: none;
+}
+
+.estimator-number-area {
+  width: 3.5ch;
+}
+
+.estimator-number-weeks {
+  width: 2.5ch;
+}
+
 .hero-slide {
   opacity: 0;
   transition: opacity 3s ease;
